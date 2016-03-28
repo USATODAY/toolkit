@@ -1,0 +1,63 @@
+<div class="table-header clearfix">
+    <div class="table-title">
+        {{ table_title }}
+    </div>
+    <div class="table-input-wrapper">
+        <div class="input-w-icon">
+              <label for="input-filter" class="input-label"><i class="input-icon icon-search"></i></label>
+              <input id="input-filter" type="text" class="input" placeholder="Search these results" ng-model="filter_text"/>
+        </div>
+    </div>
+</div>
+<div class="data-table" ng-if="data" ng-show="has_results" ng-class="{'is-data-sum': is_data_sum }">
+    <div class="table-wrapper table-headers">
+        <table class="table">
+            <thead>
+            <tr class="th-row">
+                <th class="th" ng-if="!is_data_sum">Public Water Supply</th>
+                <th class="th" ng-if="!is_data_sum">County</th>
+                <th class="th" ng-if="is_data_sum">data</th>
+                <th class="th">Sample Measure</th>
+                <th class="th"># Exceedances</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data | filter:filter_text | orderBy:'-exceedances'" class="table-row">
+                    <td class="td" data-title="Public Water Supply" ng-if="!is_data_sum">{{ item.name | uppercase }}</td>
+                    <td class="td" data-title="County" ng-if="!is_data_sum">{{ item.county }}</td>
+                    <td class="td" data-title="data" ng-if="is_data_sum">{{ item.data }}</td>
+                    <td class="td" data-title="Sample Measure">
+                        <span class="is-num-val">{{ item.sample[0] | number }}</span><span class="measure-unit">ppb</span><span class="is-num-val" ng-if="item.sample.length === 2"><span class="separator-dash">-</span><span class="is-num-val">{{ item.sample[1] | number }}</span><span class="measure-unit">ppb</span></span>
+                    </td>
+                    <td class="td" data-title="# Exceedances"><span class="is-num-val exceedances">{{ item.exceedances }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-wrapper table-values" scroll-to-bottom="is_at_bottom">
+         <table class="table">
+            <thead>
+            <tr class="th-row">
+                <th class="th" ng-if="!is_data_sum">Public Water Supply</th>
+                <th class="th" ng-if="!is_data_sum">County</th>
+                <th class="th" ng-if="is_data_sum">data</th>
+                <th class="th">Sample Measure</th>
+                <th class="th"># Exceedances</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data | filter:filter_text | orderBy:'-exceedances'" class="table-row">
+                    <td class="td" data-title="Public Water Supply" ng-if="!is_data_sum">{{ item.name | uppercase }}</td>
+                    <td class="td" data-title="County" ng-if="!is_data_sum">{{ item.county }}</td>
+                    <td class="td" data-title="data" ng-if="is_data_sum">{{ item.data }}</td>
+                    <td class="td" data-title="Sample Measure">
+                        <span class="is-num-val">{{ item.sample[0] | number }}</span><span class="measure-unit">ppb</span><span class="is-num-val" ng-if="item.sample.length === 2"><span class="separator-dash">-</span><span class="is-num-val">{{ item.sample[1] | number }}</span><span class="measure-unit">ppb</span></span>
+                    </td>
+                    <td class="td" data-title="# Exceedances"><span class="is-num-val exceedances">{{ item.exceedances }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="fadeout" ng-hide="is_at_bottom"></div>
+</div>
+<p ng-show="!has_results" class="no-data-msg">No results found</p>

@@ -1,0 +1,22 @@
+{
+  "name": "common",
+  "authors": [
+    "Pim Linders <pimlinders@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-touch": "^1.5.3",
+    "angular": "^1.5.3"
+  }
+}

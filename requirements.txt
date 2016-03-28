@@ -1,0 +1,6 @@
+Django==1.9.4
+django-bower==5.1.0
+et-xmlfile==1.0.1
+jdcal==1.2
+openpyxl==2.3.4
+six==1.10.0

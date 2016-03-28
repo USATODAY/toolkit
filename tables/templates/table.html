@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body_attrs %}ng-app="responsive-table"{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <responsive-table url="{% static data %}" title="{{ title }}"></responsive-table>
+{% endblock %}
+
+{% block css %}
+    <link href="{%  static 'tables/icons.css' %}" rel="stylesheet">
+    <link href="{%  static 'tables/tables.css' %}" rel="stylesheet">
+    <link href="{%  static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <script src="{%  static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+{% endblock %}
