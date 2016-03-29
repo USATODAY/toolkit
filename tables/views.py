@@ -19,7 +19,7 @@ def list(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc = Document(file=request.FILES['file'])
             newdoc.save()
 
             # Redirect to the document list after POST

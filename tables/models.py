@@ -6,9 +6,9 @@ from django.dispatch.dispatcher import receiver
 
 class Document(models.Model):
     def __unicode__(self):
-        return self.docfile.name
+        return self.file.name
 
-    docfile = models.FileField(upload_to='documents')
+    file = models.FileField(upload_to='documents')
 
 
 # Receive the pre_delete signal and delete the file associated with the model instance.
