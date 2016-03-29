@@ -134,3 +134,6 @@ BOWER_INSTALLED_APPS = (
     'angular',
     'angular-touch'
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
