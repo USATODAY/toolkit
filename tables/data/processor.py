@@ -107,7 +107,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # xlsx_to_json.convert('EPA_lead_interactive_03222016.xlsx', filters, export_path='data.json', compress=True)
 #
 # print 'All Done!'
-import_path = BASE_DIR + '/static/data/sample.xlsx'
-export_path = BASE_DIR + '/static/data/sample.json'
+import_path = BASE_DIR + '/static/tables/data/sample.xlsx'
+export_path = BASE_DIR + '/static/tables/data/sample.json'
 
 xlsx_to_json.convert(import_path, export_path=export_path, compress=True)

@@ -22,8 +22,6 @@
         var self = this,
             w = angular.element($window);
 
-        $scope.has_results = false;
-
         this.outer_height = function(el, include_border) {
             var height = el.offsetHeight,
               style = getComputedStyle(el);
@@ -60,7 +58,10 @@
             self.set_header_height();
         });
 
+        console.log($scope.$id);
+
         $scope.$watch('filter_text', function() {
+            console.log('hey!');
             if ($scope.data) {
                 self.refresh_view();
             }

@@ -31,7 +31,7 @@
                 }, '*');
                 cur_height = new_height;
                 // uncomment below to debug size
-                console.log(new_height);
+                // console.log(new_height);
             }
         };
 

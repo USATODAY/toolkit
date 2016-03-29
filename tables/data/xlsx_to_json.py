@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 import json
 import os.path
+import collections
 
 
 def convert(path, filters=None, export_path=None, compress=False):
@@ -66,7 +67,7 @@ def extract_data(file_path):
     wb = load_workbook(filename=file_path)
     ws = wb.active
     for row in range(1, ws.max_row + 1):
-        row_data = {}
+        row_data = collections.OrderedDict()
         for column in range(1, ws.max_column + 1):
             cell_val = ws.cell(row=row, column=column).value
             # populate column headers

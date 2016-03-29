@@ -6,7 +6,7 @@
         <div class="table-input-wrapper">
             <div class="input-w-icon">
                   <label for="input-filter" class="input-label"><i class="input-icon icon-search"></i></label>
-                  <input id="input-filter" type="text" class="input" placeholder="Search these results" ng-model="filter_text"/>
+                  <input id="input-filter" type="text" class="input" placeholder="Search these results" ng-model="$parent.filter_text"/>
             </div>
         </div>
     </div>
@@ -19,8 +19,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in data.values | filter:filter_text" class="table-row">
-                        <td class="td" data-title="{{ value }}" ng-repeat="value in row">{{ value }}</td>
+                    <tr ng-repeat="row in data.values | filter:$parent.filter_text" class="table-row">
+                        <td class="td" data-title="{{ data.fields[$index] }}" ng-repeat="value in row">{{ value }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,8 +33,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in data.values | filter:filter_text" class="table-row">
-                        <td class="td" data-title="{{ value }}" ng-repeat="value in row">{{ value }}</td>
+                    <tr ng-repeat="row in data.values | filter:$parent.filter_text" class="table-row">
+                        <td class="td" data-title="{{ data.fields[$index] }}" ng-repeat="value in row">{{ value }}</td>
                     </tr>
                 </tbody>
             </table>
