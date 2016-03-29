@@ -1,0 +1,15 @@
+<div class="boxes">
+    <div class="box">
+        <div class="progress">
+            <div class="bar">
+                <div ng-style="{ 'width': get_width() }" class="bar-fill"></div>
+            </div>
+            <div class="progress">
+                <div class="point" ng-class="{'point--active': position === $index + 1, 'point--complete': position > $index + 1}" ng-repeat="step in steps">
+                    <div class="bullet"></div>
+                    <label class="label">{{ step }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

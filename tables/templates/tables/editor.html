@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body_attrs %}ng-app="editor"{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div ng-controller="editor">
+        <stepper steps="steps" position="step"></stepper>
+        <div ng-init="step=1" ng-click="step=1">1</div>
+        <div ng-click="step=2">2</div>
+        <div ng-click="step=3">3</div>
+        <ng-view></ng-view>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'tables/components/stepper/stepper.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/icons.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/tables.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/pages/upload/upload.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
+    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+    <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
+{% endblock %}

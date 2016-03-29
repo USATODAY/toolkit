@@ -132,7 +132,8 @@ STATIC_URL = '/static/'
 
 BOWER_INSTALLED_APPS = (
     'angular',
-    'angular-touch'
+    'angular-touch',
+    'angular-route'
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

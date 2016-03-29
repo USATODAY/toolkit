@@ -14,6 +14,10 @@ def preview(request):
     })
 
 
+def editor(request):
+    return render_to_response('tables/editor.html', {
+    })
+
 def list(request):
     # Handle file upload
     if request.method == 'POST':
