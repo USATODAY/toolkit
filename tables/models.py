@@ -18,7 +18,6 @@ class Viz(models.Model):
     json = models.FileField(upload_to='documents', default=None, blank=True, null=True)
 
 
-
 # Receive the pre_delete signal and delete the file associated with the model instance.
 @receiver(pre_delete, sender=Viz)
 def document_delete(sender, instance, **kwargs):

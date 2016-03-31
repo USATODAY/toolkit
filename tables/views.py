@@ -4,8 +4,8 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import JsonResponse
-from django.conf import settings
 from django.core.signing import Signer
+import json
 
 signer = Signer()
 
@@ -22,6 +22,22 @@ def editor(request):
     return render_to_response('tables/editor.html', {
         'csrf_token': csrf_token
     }, context_instance=RequestContext(request))
+
+
+def documents_json(request):
+    response = {
+        'error': True,
+        'message': 'Invalid Request'
+    }
+    token = request.GET.get('token', None)
+    if token is not None:
+        try:
+            id = int(signer.unsign(token))
+            viz = Viz.objects.get(id=id)
+            response = json.loads(viz.json.file.read())
+        except Exception as e:
+            pass
+    return JsonResponse(response)
 
 
 def upload(request):
