@@ -9,6 +9,8 @@
         return {
             scope: {
                 url: '@',
+                // TODO allow data to get passed in
+                data: '=?',
                 title: '@'
             },
             templateUrl: (window.STATIC_ROOT || '') + 'tables/components/responsive-table/responsive-table.html',
@@ -17,7 +19,7 @@
         };
     })
 
-    .controller('responsiveTable', ['$scope', '$rootScope', '$element', '$window', '$timeout', '$filter', '$manager', '$iframeResizer', function($scope, $rootScope, $element, $window, $timeout, $filter, $manager, $iframeResizer) {
+    .controller('responsiveTable', ['$scope', '$rootScope', '$element', '$window', '$timeout', '$filter', '$tableManager', '$iframeResizer', function($scope, $rootScope, $element, $window, $timeout, $filter, $tableManager, $iframeResizer) {
 
         var self = this,
             w = angular.element($window);
@@ -67,7 +69,8 @@
             }
         });
 
-        $manager.init($scope.url, false).then(function(response) {
+        // TODO make conditional, url might not be provided and data might be
+        $tableManager.init($scope.url, false).then(function(response) {
             $scope.data = response;
             console.log($scope.data);
             self.refresh_view();
@@ -95,7 +98,7 @@
         };
     }])
 
-    .service('$manager', ['$rootScope', '$http', '$q', function($rootScope, $http, $q) {
+    .service('$tableManager', ['$rootScope', '$http', '$q', function($rootScope, $http, $q) {
 
         var self = this;
 
