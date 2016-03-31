@@ -4,7 +4,8 @@
     angular.module('editor', [
         'ngTouch',
         'ngRoute',
-        'stepper'
+        'stepper',
+        'upload'
     ])
     
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -21,11 +22,6 @@
     
         // configure html5 links
         $locationProvider.html5Mode(false);
-    }])
-
-    .controller('upload', ['$scope', function ($scope) {
-        console.log('upload')
-
     }])
 
    .controller('editor', ['$scope', function ($scope) {

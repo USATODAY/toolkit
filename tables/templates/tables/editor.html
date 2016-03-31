@@ -7,9 +7,6 @@
 {% block content %}
     <div ng-controller="editor">
         <stepper steps="steps" position="step"></stepper>
-        <div ng-init="step=1" ng-click="step=1">1</div>
-        <div ng-click="step=2">2</div>
-        <div ng-click="step=3">3</div>
         <ng-view></ng-view>
     </div>
 {% endblock %}
@@ -23,7 +20,18 @@
 {% endblock %}
 
 {% block js %}
+    <script>
+        window.options = {
+            upload: {
+                url: "{% url 'upload' %}"
+            },
+            csrf_token: "{{ csrf_token }}"
+        }
+    </script>
+    <script src="{%  static 'ng-file-upload/ng-file-upload.min.js' %}"></script>
+
     <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
     <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
     <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
+    <script src="{% static 'tables/pages/upload/upload.js' %}"></script>
 {% endblock %}

@@ -8,7 +8,7 @@
         return {
             scope: {
                 steps: '=',
-                position: '='
+                position: '=?'
             },
             templateUrl: (window.STATIC_ROOT || '') + 'tables/components/stepper/stepper.html',
             restrict: 'E',
@@ -24,7 +24,10 @@
             return (($scope.position - 1) / ($scope.steps.length - 1) * 100) + '%'
         };
 
-        console.log($scope.$id);
+        // set default position
+        if (!$scope.position) {
+            $scope.position = 1;
+        }
 
     }]);
 

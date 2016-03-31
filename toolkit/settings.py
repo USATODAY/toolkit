@@ -14,10 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'uhf8oyzpulpb^z9h#-1a_#(%6k8ve388@ruegij!ypkplpevf_'
@@ -40,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangobower',
     'tables',
-    'common'
+    'common',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -133,7 +130,8 @@ STATIC_URL = '/static/'
 BOWER_INSTALLED_APPS = (
     'angular',
     'angular-touch',
-    'angular-route'
+    'angular-route',
+    'ng-file-upload'
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
