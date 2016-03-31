@@ -2,11 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from models import Document
+from models import Viz
 
 
-@admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
+@admin.register(Viz)
+class VizAdmin(admin.ModelAdmin):
     pass
 
 

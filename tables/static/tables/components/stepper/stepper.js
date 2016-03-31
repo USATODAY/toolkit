@@ -21,12 +21,12 @@
         var self = this;
 
         $scope.get_width = function() {
-            return (($scope.position - 1) / ($scope.steps.length - 1) * 100) + '%'
+            return (($scope.position) / ($scope.steps.length - 1) * 100) + '%'
         };
 
         // set default position
         if (!$scope.position) {
-            $scope.position = 1;
+            $scope.position = 0;
         }
 
     }]);

@@ -6,7 +6,7 @@
 
 {% block content %}
     <div ng-controller="editor">
-        <stepper steps="steps" position="step"></stepper>
+        <stepper steps="steps" position="stepper_position"></stepper>
         <ng-view></ng-view>
     </div>
 {% endblock %}
@@ -17,6 +17,7 @@
     <link href="{% static 'tables/tables.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/upload/upload.css' %}" rel="stylesheet">
+    <link href="{%  static 'angular-xeditable/dist/css/xeditable.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block js %}
@@ -29,9 +30,11 @@
         }
     </script>
     <script src="{%  static 'ng-file-upload/ng-file-upload.min.js' %}"></script>
+    <script src="{%  static 'angular-xeditable/dist/js/xeditable.js' %}"></script>
 
     <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
     <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
     <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
     <script src="{% static 'tables/pages/upload/upload.js' %}"></script>
+    <script src="{% static 'tables/pages/edit/edit.js' %}"></script>
 {% endblock %}

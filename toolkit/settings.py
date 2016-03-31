@@ -131,7 +131,8 @@ BOWER_INSTALLED_APPS = (
     'angular',
     'angular-touch',
     'angular-route',
-    'ng-file-upload'
+    'ng-file-upload',
+    'angular-xeditable'
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

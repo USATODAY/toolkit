@@ -1,7 +1,8 @@
 <div>
     <div ngf-drop ngf-select ng-model="file" class="drop-box"
         ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
-        >
+        accept="'.xls,.xlsx,.csv'"
+        ngf-pattern="'.xls,.xlsx,.csv'">
         <span class="vertically-center">Drop excel files here or click to upload</span>
     </div>
     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser.</div>

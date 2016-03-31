@@ -5,7 +5,8 @@
         'ngTouch',
         'ngRoute',
         'stepper',
-        'upload'
+        'upload',
+        'edit'
     ])
     
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -16,6 +17,11 @@
                 templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/upload/upload.html',
                 reloadOnSearch: false
             })
+            .when('/edit/:token', {
+                controller: 'edit',
+                templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/edit/edit.html',
+                reloadOnSearch: false
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -24,8 +30,19 @@
         $locationProvider.html5Mode(false);
     }])
 
-   .controller('editor', ['$scope', function ($scope) {
-        $scope.steps = ['Upload', 'Create', 'Preview', 'Publish']
+    .controller('editor', ['$scope', '$location', function ($scope, $location) {
+        $scope.steps = ['Upload', 'Edit', 'Publish'];
+
+        $scope.$on('$routeChangeStart', function(next, current) {
+            var path = $location.path();
+            for (var i=0; i<$scope.steps.length; i+=1) {
+                var step = $scope.steps[i].toLowerCase();
+                if (path.indexOf(step) !== -1) {
+                    $scope.stepper_position = i;
+                    break;
+                }
+            }
+        });
 
     }])
     

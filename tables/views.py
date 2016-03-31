@@ -1,9 +1,13 @@
-from models import Document
+from models import Viz
 from forms import DocumentForm
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import JsonResponse
+from django.conf import settings
+from django.core.signing import Signer
+
+signer = Signer()
 
 
 def preview(request):
@@ -29,11 +33,12 @@ def upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(file=request.FILES['file'])
-            newdoc.save()
+            # create a new table entry
+            table = Viz(file=request.FILES['file'])
+            table.save()
             response = {
                 'success': True,
-                'id': newdoc.id
+                'token': signer.sign(table.id)
             }
         else:
             response = {
