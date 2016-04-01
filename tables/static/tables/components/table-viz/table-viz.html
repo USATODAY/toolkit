@@ -1,14 +1,14 @@
-<div id="viz">
+<div id="viz" class="editable">
     <div class="chatter-header chatter clearfix">
         <div class="chatter-title-wrapper">
-            <h1 class="chatter-title">Lead in the water: A Nationwide Look</h1>
+            <h1 class="chatter-title" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
         </div>
-        <p class="chatter-description">Since 2012, nearly 2,000 water systems across the U.S. have found elevated lead levels in tap water samples, a public health concern that requires them to notify customers and take action. Search or click the map to find systems in your area. The map table shows the state / name of the water system; the county it serves; the range of lead levels over 15 parts per billion in samples that triggered an action status, and total action-level tests over the period.</p>
+        <p class="chatter-description" editable-textarea="viz.description">{{ viz.description || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
     </div>
     <div class="viz-content">
         <responsive-table url="{{ tableDataUrl }}"></responsive-table>
     </div>
     <div class="chatter-footer chatter">
-        <p><span class="chatter-source">Source</span>:  USA TODAY analysis of EPA’s Safe Drinking Water Information System (SDWIS) database.</p>
+        <p><span class="chatter-source">Source</span>: <span editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>
     </div>
 </div>

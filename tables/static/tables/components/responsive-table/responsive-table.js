@@ -61,10 +61,7 @@
             self.set_header_height();
         });
 
-        console.log($scope.$id);
-
         $scope.$watch('filter_text', function() {
-            console.log('hey!');
             if ($scope.data) {
                 self.refresh_view();
             }
@@ -75,7 +72,6 @@
             // TODO make conditional, url might not be provided and data might be
             $tableManager.init($scope.url, false).then(function (response) {
                 $scope.data = response;
-                console.log($scope.data);
                 self.refresh_view();
             });
         }
