@@ -1,7 +1,7 @@
 <div class="data-table-wrapper" ng-if="data" iframe-resize>
     <div class="table-header clearfix">
         <div class="table-title">
-            {{ title }}50 records
+            <span ng-class="{'error-msg': !has_results}">{{ results_cnt }} record<span ng-if="results_cnt !== 1">s</span></span>
         </div>
         <div class="table-input-wrapper">
             <div class="input-w-icon">
@@ -41,5 +41,5 @@
         </div>
         <div class="fadeout" ng-hide="is_at_bottom"></div>
     </div>
-    <p ng-show="!has_results" class="no-data-msg">No results found</p>
+    <p ng-show="!has_results" class="no-data-msg error-msg">No results found</p>
 </div>

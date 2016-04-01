@@ -53,7 +53,8 @@
 
         this.refresh_view = function() {
             self.set_header_height();
-            $scope.has_results = $filter('filter')($scope.data.values, $scope.filter_text).length > 0;
+            $scope.results_cnt = $filter('filter')($scope.data.values, $scope.filter_text).length;
+            $scope.has_results = $scope.results_cnt > 0;
         };
 
         w.bind('resize', function () {

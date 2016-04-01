@@ -182,12 +182,14 @@
 input:focus {
     outline: none;
 }
-
-.no-data-msg {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+.error-msg {
     color: #D50000;
+}
+.no-data-msg {
+    color: #D50000;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .fadeout {
