@@ -37,7 +37,7 @@
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
     text-align: left;
-    padding: 10px 24px;
+    padding: 10px 17px;
     vertical-align: top;
     border-top: 0;
     -webkit-transition: all 0.3s ease;
@@ -85,6 +85,10 @@
     border-bottom: 1px solid #f0f0f0;
 }
 
+.table-row:last-child {
+    border-bottom: none;
+}
+
 .table .is-num-val {
     font-family: 'Inconsolata', serif;
     font-size: 1.1rem;
@@ -109,17 +113,15 @@
 
 .table-header {
     margin: 0;
-    padding: 8px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    padding: 15px 17px;
     position: relative;
-    min-height: 47px;
 }
 
 .table-title {
     float: left;
     font-size: 1.2rem;
-    color: #fff;
-    line-height: 30px;
+    line-height: 32px;
+    font-weight: bold;
     display: none;
 }
 
@@ -173,8 +175,8 @@
     border: none;
     padding: 5px 10px 5px 37px;
     border-radius: 16px;
-    border: 1px solid #757575;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 input:focus {
@@ -227,10 +229,9 @@ input:focus {
 
     .input-w-icon {
         cursor: pointer;
-        position: absolute;
-        right: 15px;
         transition: all 0.2s ease-out;
-        width: 240px;
+        min-width: 250px;
+        float: right;
     }
 
     .table-title {
@@ -250,7 +251,7 @@ input:focus {
     }
 
     .table > tbody > tr:nth-child(odd) {
-        background: #f2f2f2;
+        background: rgba(27,156,250, 0.08);
     }
 
     .table-headers tbody {
@@ -276,10 +277,6 @@ input:focus {
         right: 0;
         top: 0;
         z-index: 2;
-    }
-
-    .table-header {
-        background: #757575;
     }
 
     .table-wrapper.table-headers .th-row th {

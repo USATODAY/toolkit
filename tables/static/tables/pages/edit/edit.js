@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('edit', [
-        'responsive-table'
+        'table-viz'
     ])
 
     .controller('edit', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {

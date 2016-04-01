@@ -21,6 +21,11 @@ body {
     background: #fff;
 }
 
+.editor {
+    max-width: 960px;
+    margin: auto;
+}
+
 .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

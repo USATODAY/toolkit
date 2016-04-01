@@ -69,12 +69,15 @@
             }
         });
 
-        // TODO make conditional, url might not be provided and data might be
-        $tableManager.init($scope.url, false).then(function(response) {
-            $scope.data = response;
-            console.log($scope.data);
-            self.refresh_view();
-        })
+        // use url to populate table data
+        if (!$scope.data && $scope.url) {
+            // TODO make conditional, url might not be provided and data might be
+            $tableManager.init($scope.url, false).then(function (response) {
+                $scope.data = response;
+                console.log($scope.data);
+                self.refresh_view();
+            });
+        }
 
     }])
 

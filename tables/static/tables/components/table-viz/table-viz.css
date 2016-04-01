@@ -1,0 +1,56 @@
+.chatter {
+    font-family: 'Futura Today Normal', Arial, sans-serif;
+}
+.chatter-header {
+    border-top: solid 10px #1B9CFA;
+    background: #f8f8fa;
+}
+.chatter-title-wrapper {
+    position: relative;
+}
+.chatter-header-icon {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    margin: auto;
+    width: 60px;
+    display: none;
+    height: 60px;
+}
+.chatter-title {
+    font-family: 'Futura Today Demibold', Arial, sans-serif;
+    font-size: 25px;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    line-height: 1em;
+    margin: 0;
+    padding: 25px 0 10px 0;
+}
+.chatter-description {
+    font-size: 1rem;
+    margin: 13px 0 30px;
+}
+.chatter-source {
+    text-transform: uppercase;
+}
+.chatter-footer {
+    color: rgba(0,0,0,0.5);
+    padding-bottom: 1px;
+}
+.viz-content {
+    box-shadow: 0 -3px 1px rgba(0,0,0,0.02);
+}
+.chatter {
+    padding: 0 17px;
+}
+@media (min-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    .chatter-title {
+        padding-right: 0;
+    }
+    .chatter-header-icon {
+        display: block;
+    }
+}
