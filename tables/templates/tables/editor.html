@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}Table Generator{% endblock %}
+
 {% block body_attrs %}ng-app="editor"{% endblock %}
 
 {% load staticfiles %}
 
 {% block content %}
     <div ng-controller="editor" class="editor">
-        <stepper steps="steps" position="stepper_position"></stepper>
-        <ng-view></ng-view>
+        <div class="page-header">
+            <h1 class="page-header-title"><span class="">USA Today</span><span class="page-header-subtitle">Table Generator</span></h1>
+        </div>
+        <div class="header-separator"></div>
+        <div class="stepper-wrapper">
+            <stepper steps="steps" position="stepper_position"></stepper>
+        </div>
+        <div class="editor-content">
+            <ng-view></ng-view>
+        </div>
     </div>
 {% endblock %}
 
 {% block css %}
     <link href="{% static 'tables/components/stepper/stepper.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/icons.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/editor.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/editor-icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/upload/upload.css' %}" rel="stylesheet">

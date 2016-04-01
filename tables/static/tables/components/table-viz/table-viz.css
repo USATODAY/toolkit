@@ -1,3 +1,6 @@
+#viz {
+    background: #fff;
+}
 .chatter {
     font-family: 'Futura Today Normal', Arial, sans-serif;
 }
@@ -42,6 +45,7 @@
 }
 .chatter {
     padding: 0 17px;
+    overflow: auto;
 }
 @media (min-width: 480px) {
     html {

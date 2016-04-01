@@ -13,8 +13,9 @@ body {
 .boxes {
     position: relative;
     width: 90%;
-    height: 100px;
-    margin: auto;
+    max-width: 980px;
+    height: 85px;
+    margin: -43px auto 0;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -33,7 +34,6 @@ body {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-    background: #FFF;
     width: 100%;
     top: 0;
     bottom: 0;
@@ -75,7 +75,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    background: #E8DFD8;
+    background: rgba(0,0,0,0.2);
     width: 100%;
     height: 5px;
     border-radius: 10px;
@@ -86,14 +86,14 @@ body {
 
 .bar-fill {
     display: block;
-    background: #BD8044;
+    background: rgba(77,182,172, 1);
     height: 100%;
     transition: width 600ms ease;
 }
 
 .point {
     position: relative;
-    color: #AC9585;
+    color: rgba(77,182,172, 0.9);
 }
 
 .point:before {
@@ -113,13 +113,13 @@ body {
 }
 
 .point--complete, .point--active {
-    color: #BA7C3F;
+    color: rgba(77,182,172, 1);
 }
 
 .bullet {
     z-index: 1;
     position: relative;
-    background: #AC9585;
+    background: rgba(77,182,172,0.9);
     width: 10px;
     height: 10px;
     border-radius: 100%;
@@ -129,11 +129,11 @@ body {
 
 .point--complete .bullet, .point--active .bullet {
     background: #FFFFFF;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px #BD8044;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px rgba(77,182,172, 1);;
 }
 
 .point--active .bullet {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #BD8044;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(77,182,172, 1);;
 }
 
 .label {
@@ -146,20 +146,4 @@ body {
     text-transform: uppercase;
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
-}
-
-.radius-toggle {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: block;
-    background: #FFF;
-    border: 0;
-    border-radius: 4px;
-    box-shadow: 40px 0 65px rgba(212, 197, 186, 0.4);
-    padding: 10px;
-    color: #BA7C3F;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2016 by original authors @ fontello.com</metadata>
+<defs>
+<font id="editor-icons" horiz-adv-x="1000" >
+<font-face font-family="editor-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="upload" unicode="&#xe804;" d="M500 776l260-244-164 0 0-256-190 0 0 256-166 0z m468-578q18-10 27-32t3-40l-28-154q-4-20-22-33t-40-13l-816 0q-22 0-40 13t-22 33l-28 154q-10 48 32 72l158 108 98 0-170-130 178 0q8 0 12-8l40-110 300 0 40 110q8 8 12 8l178 0-170 130 98 0z" horiz-adv-x="1000" />
+
+<glyph glyph-name="publish" unicode="&#xe805;" d="M900 800q42 0 71-30t29-70l0-600q0-42-29-71t-71-29l-198 0 0 98 200 0 0 462-802 0 0-462 200 0 0-98-200 0q-40 0-70 29t-30 71l0 600q0 40 30 70t70 30l800 0z m-770-168q38 0 38 38 0 16-11 26t-27 10-27-11-11-25q0-16 11-27t27-11z m100 0q38 0 38 38 0 16-11 26t-27 10-27-11-11-25q0-16 11-27t27-11z m672 6l0 62-602 0 0-62 602 0z m-404-198l242-240-150 0 0-300-184 0 0 300-150 0z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
