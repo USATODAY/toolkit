@@ -26,23 +26,6 @@ def editor(request):
     }, context_instance=RequestContext(request))
 
 
-# get converted excel file
-def documents_json(request):
-    response = {
-        'error': True,
-        'message': 'Bad Request'
-    }
-    token = request.GET.get('token', None)
-    if token is not None:
-        try:
-            id = int(signer.unsign(token))
-            table_viz = TableViz.objects.get(id=id)
-            response = json.loads(table_viz.json.file.read())
-        except Exception as e:
-            pass
-    return JsonResponse(response)
-
-
 # upload excel files
 def media_upload(request):
     response = {
@@ -68,7 +51,26 @@ def media_upload(request):
     return JsonResponse(response)
 
 
-# get/set
+def set_table_viz(id, data):
+    table_viz = TableViz.objects.get(id=id)
+    table_viz.title = data['title']
+    table_viz.chatter = data['chatter']
+    table_viz.source = data['source']
+    table_viz.save()
+
+
+def get_table_viz(id):
+    table_viz = TableViz.objects.get(id=id)
+    data = {
+        'title': table_viz.title,
+        'chatter': table_viz.chatter,
+        'source': table_viz.chatter,
+        'table_data': json.loads(table_viz.json.file.read())
+    }
+    return data
+
+
+# get/set table-viz
 def table_viz(request):
     response = {
         'error': True,
@@ -79,11 +81,7 @@ def table_viz(request):
         form = TableVizPublish(data)
         if form.is_valid():
             id = int(signer.unsign(data['token']))
-            table_viz = TableViz.objects.get(id=id)
-            table_viz.title = data['title']
-            table_viz.chatter = data['chatter']
-            table_viz.source = data['source']
-            table_viz.save()
+            set_table_viz(id, data)
         #     TODO publish to ftp here
         else:
             response = {
@@ -96,12 +94,8 @@ def table_viz(request):
             try:
                 id = int(signer.unsign(token))
                 if id is not None:
-                    table_viz = TableViz.objects.get(id=id)
-                    response = {
-                        'title': table_viz.title,
-                        'chatter': table_viz.chatter,
-                        'source': table_viz.chatter,
-                    }
+                    response = get_table_viz(id)
+                    response['token'] = token
             except Exception as e:
                 pass
     return JsonResponse(response)

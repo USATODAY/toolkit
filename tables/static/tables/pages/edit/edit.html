@@ -3,7 +3,7 @@
     <p>Click on the fields below to edit your chatter. Bookmark this page to edit this table in the future. Resize the browser window to view mobile version. Once your happy with your table click on the "publish" button to generate your oembed link.</p>
 </div>
 <div class="snippet desktop-width-limit">
-    <div id="viz" class="editable">
+    <div id="viz" class="editable" ng-if="viz">
         <div class="chatter-header chatter clearfix">
             <div class="chatter-title-wrapper">
                 <h1 class="chatter-title" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
@@ -11,7 +11,7 @@
             <p class="chatter-description" editable-textarea="viz.chatter">{{ viz.chatter || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
         </div>
         <div class="viz-content">
-            <responsive-table url="{{ table_data_url }}"></responsive-table>
+            <responsive-table table-data="viz.table_data"></responsive-table>
         </div>
         <div class="chatter-footer chatter">
             <p><span class="chatter-source">Source</span>: <span editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>

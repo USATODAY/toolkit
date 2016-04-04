@@ -18,14 +18,12 @@
             });
         };
         
-        $scope.table_data_url = window.options.documents_json.url.substring(0, window.options.documents_json.url.length-1) + '?token=' + $routeParams.token;
+        // $scope.table_data_url = window.options.documents_json.url.substring(0, window.options.documents_json.url.length-1) + '?token=' + $routeParams.token;
 
-        $scope.viz = {
-            token: $routeParams.token,
-            title: 'hey this is my title',
-            chatter: 'chatter',
-            source: 'my source'
-        };
+        // TODO populate $scope.viz with ajax call
+        // TODO data should be included in call
+        // TODO for publish, call get and push to ftp server
+   
         //
         // $scope.$watch('viz', function() {
         //     console.log($scope.viz);
@@ -52,8 +50,14 @@
             else {
                 SweetAlert.swal('OOPS!', error_msg, 'error');
             }
-            
         };
+
+        $api.get_table_viz({
+            token: $routeParams.token
+        }).then(function(response) {
+            $scope.viz = response;
+        })
+
     }])
 
 })(window.angular);

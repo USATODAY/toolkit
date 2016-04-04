@@ -9,8 +9,7 @@
         return {
             scope: {
                 url: '@',
-                // TODO allow data to get passed in
-                data: '=?',
+                tableData: '=?',
                 title: '@'
             },
             templateUrl: (window.STATIC_ROOT || '') + 'tables/components/responsive-table/responsive-table.html',
@@ -53,7 +52,7 @@
 
         this.refresh_view = function() {
             self.set_header_height();
-            $scope.results_cnt = $filter('filter')($scope.data.values, $scope.filter_text).length;
+            $scope.results_cnt = $filter('filter')($scope.tableData.values, $scope.filter_text).length;
             $scope.has_results = $scope.results_cnt > 0;
         };
 
@@ -62,16 +61,16 @@
         });
 
         $scope.$watch('filter_text', function() {
-            if ($scope.data) {
+            if ($scope.tableData) {
                 self.refresh_view();
             }
         });
 
         // use url to populate table data
-        if (!$scope.data && $scope.url) {
+        if (!$scope.tableData && $scope.url) {
             // TODO make conditional, url might not be provided and data might be
             $tableManager.init($scope.url, false).then(function (response) {
-                $scope.data = response;
+                $scope.tableData = response;
                 self.refresh_view();
             });
         }

@@ -19,6 +19,14 @@
         };
 
         this.fetch = function(url, params, options) {
+            // no params
+            if (!params) {
+                params = {};
+            }
+            // no options
+            if (!options) {
+                options = {};
+            }
             var deferred = $q.defer(),
                 http_config = {
                     method: options.method || 'GET',
@@ -28,10 +36,6 @@
                         'X-CSRFToken':  window.options.csrf_token
                     }
                 };
-            // no params
-            if (!params) {
-                params = {};
-            }
             // post/put uses data
             if (http_config.method === 'GET') {
                 http_config.params = params;
