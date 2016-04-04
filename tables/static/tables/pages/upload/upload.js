@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('upload', [
-        'ngFileUpload'
+        'ngFileUpload',
+        'oitozero.ngSweetAlert'
     ])
 
-    .controller('upload', ['$scope', 'Upload', '$location', function ($scope, Upload, $location) {
+    .controller('upload', ['$scope', 'Upload', '$location', 'SweetAlert', function ($scope, Upload, $location, SweetAlert) {
 
         $scope.$watch('file', function () {
             if ($scope.file) {
@@ -16,10 +17,10 @@
         $scope.upload = function (file) {
             var error = function(message) {
                 if (message) {
-                    alert(message);
+                    SweetAlert.swal('OOPS!', message, 'error');
                 }
                 else {
-                    alert('Upload Failed');
+                    SweetAlert.swal('OOPS!', 'Upload Failed', 'error');
                 }
             };
 

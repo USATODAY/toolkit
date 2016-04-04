@@ -6,8 +6,13 @@
         'ngRoute',
         'stepper',
         'upload',
-        'edit'
+        'edit',
+        'angular-loading-bar'
     ])
+
+    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.latencyThreshold = 200;
+    }])
     
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     
@@ -30,7 +35,7 @@
         $locationProvider.html5Mode(false);
     }])
 
-    .controller('editor', ['$scope', '$location', '$route', '$routeParams', function ($scope, $location, $route, $routeParams) {
+    .controller('editor', ['$scope', function ($scope) {
         $scope.steps = ['upload', 'edit', 'publish'];
 
         $scope.$on('$routeChangeStart', function(e, next, current) {
@@ -39,13 +44,6 @@
                 $scope.stepper_position = next_positon;
             }
         });
-
-    }])
-    
-    .service('$manager', ['$rootScope', '$http', '$q', function($rootScope, $http, $q) {
-
-        var self = this;
-            
 
     }]);
 

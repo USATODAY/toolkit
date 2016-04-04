@@ -7,7 +7,7 @@ from django.core.files.base import ContentFile
 import json
 
 
-class Viz(models.Model):
+class TableViz(models.Model):
     def __unicode__(self):
         return "%s" % self.file.name
 
@@ -19,14 +19,14 @@ class Viz(models.Model):
 
 
 # Receive the pre_delete signal and delete the file associated with the model instance.
-@receiver(pre_delete, sender=Viz)
+@receiver(pre_delete, sender=TableViz)
 def document_delete(sender, instance, **kwargs):
     # Pass false so FileField doesn't save the model.
     instance.file.delete(False)
     instance.json.delete(False)
 
 
-@receiver(post_save, sender=Viz)
+@receiver(post_save, sender=TableViz)
 def create_json(sender, instance, **kwargs):
     if instance.json.name is None:
         json_filename = instance.file.path[instance.file.path.rindex('/') + 1:instance.file.path.rindex('.')] + '.json'

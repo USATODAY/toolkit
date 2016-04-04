@@ -16,3 +16,10 @@ class DocumentForm(forms.Form):
         help_text='max. 42 megabytes',
         validators=[validate_file_extension]
     )
+
+
+class TableVizPublish(forms.Form):
+    title = forms.CharField(min_length=1, required=True)
+    chatter = forms.CharField(min_length=1, required=True)
+    source = forms.CharField(min_length=1, required=True)
+    token = forms.CharField(required=True)

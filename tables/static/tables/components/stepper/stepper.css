@@ -13,7 +13,7 @@ body {
 .boxes {
     position: relative;
     width: 90%;
-    max-width: 980px;
+    max-width: 860px;
     height: 85px;
     margin: -43px auto 0;
     font-family: "Open Sans", sans-serif;
@@ -37,7 +37,7 @@ body {
     width: 100%;
     top: 0;
     bottom: 0;
-    padding: 0 80px;
+    padding: 0;
     box-sizing: border-box;
     -webkit-transform-origin: center;
     transform-origin: center;

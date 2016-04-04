@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module('table-viz', [
-        'responsive-table',
-        'xeditable'
+        'responsive-table'
     ])
 
     .run(function(editableOptions) {
@@ -13,9 +12,7 @@
     .directive('tableViz', function () {
         return {
             scope: {
-                url: '@',
-                tableDataUrl: '@',
-                editable: '='
+                url: '@'
             },
             templateUrl: (window.STATIC_ROOT || '') + 'tables/components/table-viz/table-viz.html',
             restrict: 'E',
@@ -24,17 +21,9 @@
     })
 
     // TODO Hide table until data is populated !important, creates funky animation
-    //    TODO create a tableviz view? doesn't need all the edit code?
+    // TODO create a tableviz view? doesn't need all the edit code?
 
     .controller('tableViz', ['$scope', function($scope) {
-
-        var self = this;
-
-        $scope.viz = {};
-
-        $scope.$watch('viz', function() {
-            console.log($scope.viz);
-        }, true)
 
 
     }]);

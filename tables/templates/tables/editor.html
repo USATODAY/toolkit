@@ -22,6 +22,7 @@
 {% endblock %}
 
 {% block css %}
+    <link href="{% static 'sweetalert/dist/sweetalert.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/stepper/stepper.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/editor.css' %}" rel="stylesheet">
@@ -41,15 +42,21 @@
             documents_json: {
                 url: "{% url 'documents-json' %}"
             },
+            table_viz : {
+                url: "{% url 'table-viz' %}"
+            },
             csrf_token: "{{ csrf_token }}"
         }
     </script>
-    <script src="{%  static 'ng-file-upload/ng-file-upload.min.js' %}"></script>
-    <script src="{%  static 'angular-xeditable/dist/js/xeditable.js' %}"></script>
-
+    <script src="{% static 'angular-loading-bar/build/loading-bar.min.js' %}"></script>
+    <script src="{% static 'ng-file-upload/ng-file-upload.min.js' %}"></script>
+    <script src="{% static 'angular-xeditable/dist/js/xeditable.js' %}"></script>
+    <script src="{% static 'sweetalert/dist/sweetalert.min.js' %}"></script>
+    <script src="{% static 'ngSweetAlert/SweetAlert.min.js' %}"></script>
     <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
     <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
     <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
+    <script src="{% static 'tables/pages/editor/editor-api.js' %}"></script>
     <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
     <script src="{% static 'tables/pages/upload/upload.js' %}"></script>
     <script src="{% static 'tables/pages/edit/edit.js' %}"></script>
