@@ -16,6 +16,7 @@ class TableViz(models.Model):
     source = models.TextField(default=None, blank=True, null=True)
     file = models.FileField(upload_to='documents')
     json = models.FileField(upload_to='documents', default=None, blank=True, null=True)
+    published = models.BooleanField(default=False, blank=False, null=False)
 
 
 # Receive the pre_delete signal and delete the file associated with the model instance.
@@ -24,6 +25,7 @@ def document_delete(sender, instance, **kwargs):
     # Pass false so FileField doesn't save the model.
     instance.file.delete(False)
     instance.json.delete(False)
+#     TODO if published, delete from ftp file
 
 
 @receiver(post_save, sender=TableViz)

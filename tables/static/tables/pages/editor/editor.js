@@ -27,6 +27,12 @@
                 templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/edit/edit.html',
                 reloadOnSearch: false
             })
+            //TODO create publish page
+            .when('/publish/:token', {
+                controller: 'publish',
+                templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/publish/publish.html',
+                reloadOnSearch: false
+            })
             .otherwise({
                 redirectTo: '/'
             });

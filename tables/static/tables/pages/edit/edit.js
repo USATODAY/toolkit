@@ -14,20 +14,9 @@
         
         this.publish = function() {
             $api.set_table_viz($scope.viz).then(function() {
-                console.log('hye!!');
+                $location.path('publish/' + $routeParams.token);
             });
         };
-        
-        // $scope.table_data_url = window.options.documents_json.url.substring(0, window.options.documents_json.url.length-1) + '?token=' + $routeParams.token;
-
-        // TODO populate $scope.viz with ajax call
-        // TODO data should be included in call
-        // TODO for publish, call get and push to ftp server
-   
-        //
-        // $scope.$watch('viz', function() {
-        //     console.log($scope.viz);
-        // }, true);
 
         $scope.publish_btn = function() {
             var is_valid = true,

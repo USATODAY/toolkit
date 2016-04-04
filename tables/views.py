@@ -5,9 +5,12 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import JsonResponse
 from django.core.signing import Signer
+from ftp_manager import upload
 import json
+from django.conf import settings
 
 signer = Signer()
+host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
 
 
 # preview table viz
@@ -51,15 +54,16 @@ def media_upload(request):
     return JsonResponse(response)
 
 
-def set_table_viz(id, data):
+def set_table_viz_data(id, data):
     table_viz = TableViz.objects.get(id=id)
     table_viz.title = data['title']
     table_viz.chatter = data['chatter']
     table_viz.source = data['source']
     table_viz.save()
+    return table_viz
 
 
-def get_table_viz(id):
+def get_table_viz_data(id):
     table_viz = TableViz.objects.get(id=id)
     data = {
         'title': table_viz.title,
@@ -81,8 +85,10 @@ def table_viz(request):
         form = TableVizPublish(data)
         if form.is_valid():
             id = int(signer.unsign(data['token']))
-            set_table_viz(id, data)
-        #     TODO publish to ftp here
+            table_viz = set_table_viz_data(id, data)
+            response = get_table_viz_data(id)
+            file_name = '%s.json' % id
+            upload(settings.FTP_HOST, settings.FTP_USER, settings.FTP_PASSOWRD, host_path, file_content=json.dumps(response), file_name=file_name)
         else:
             response = {
                 'error': True,
@@ -94,17 +100,8 @@ def table_viz(request):
             try:
                 id = int(signer.unsign(token))
                 if id is not None:
-                    response = get_table_viz(id)
+                    response = get_table_viz_data(id)
                     response['token'] = token
             except Exception as e:
                 pass
-    return JsonResponse(response)
-
-
-# get publish details
-def get_published(request):
-    response = {
-        'error': True,
-        'message': 'Request must be POST'
-    }
     return JsonResponse(response)
