@@ -30,17 +30,13 @@
         $locationProvider.html5Mode(false);
     }])
 
-    .controller('editor', ['$scope', '$location', function ($scope, $location) {
-        $scope.steps = ['Upload', 'Edit', 'Publish'];
+    .controller('editor', ['$scope', '$location', '$route', '$routeParams', function ($scope, $location, $route, $routeParams) {
+        $scope.steps = ['upload', 'edit', 'publish'];
 
-        $scope.$on('$routeChangeStart', function(next, current) {
-            var path = $location.path();
-            for (var i=0; i<$scope.steps.length; i+=1) {
-                var step = $scope.steps[i].toLowerCase();
-                if (path.indexOf(step) !== -1) {
-                    $scope.stepper_position = i;
-                    break;
-                }
+        $scope.$on('$routeChangeStart', function(e, next, current) {
+            var next_positon = $scope.steps.indexOf(next.$$route.controller);
+            if (next_positon !== -1) {
+                $scope.stepper_position = next_positon;
             }
         });
 
