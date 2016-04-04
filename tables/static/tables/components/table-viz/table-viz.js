@@ -23,6 +23,7 @@
         };
     })
 
+    // TODO Hide table until data is populated !important, creates funky animation
     //    TODO create a tableviz view? doesn't need all the edit code?
 
     .controller('tableViz', ['$scope', function($scope) {

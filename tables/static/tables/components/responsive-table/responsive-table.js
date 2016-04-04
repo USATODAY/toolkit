@@ -20,7 +20,7 @@
     })
 
     .controller('responsiveTable', ['$scope', '$rootScope', '$element', '$window', '$timeout', '$filter', '$tableManager', '$iframeResizer', function($scope, $rootScope, $element, $window, $timeout, $filter, $tableManager, $iframeResizer) {
-
+        
         var self = this,
             w = angular.element($window);
 

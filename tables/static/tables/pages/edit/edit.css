@@ -137,7 +137,6 @@ a.editable-empty:focus {
     text-transform: uppercase;
     line-height: 20px;
     padding: 18px 100px 18px 20px;
-    font-size: 1.4rem;
     border-radius: 5px;
     outline: 0;
     position: relative;
@@ -146,6 +145,10 @@ a.editable-empty:focus {
     transition: all .3s;
     background: #4DB6AC;
     color: #fff;
+}
+
+.slide-btn-text {
+    font-size: 1.35rem;
 }
 
 .slide-btn:after {
@@ -168,26 +171,32 @@ a.editable-empty:focus {
     -ms-transform-origin: 0 1px;
     -ms-transform: rotate(-20deg);
     transform-origin: 0 1px;
-    transform: rotate(-20deg)
+    transform: rotate(-20deg);
 }
-/* TODO USE EDITOR ICONS FONT! */
 .slide-btn:before {
-    font-family: fontawesome, sans-serif;
+    font-family: editor-icons, sans-serif;
     position: absolute;
     height: 100%;
-    font-size: 140%;
+    font-size: 1.6rem;
     right: 8%;
     z-index: 2;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
-    transition: all .3s
+    transition: all .3s;
 }
 
-.slide-btn:focus, .slide-btn:hover {
+.slide-btn:focus,
+.slide-btn:hover {
     color: #fff;
     text-decoration: none;
-    background: rgba(0, 0, 0, .55)
+    background: #00897B;
 }
+
+.slide-btn:focus:before,
+.slide-btn:hover:before {
+    right: 10%;
+}
+
 
 .slide-btn:hover:after {
     width: 36%

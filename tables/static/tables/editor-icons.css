@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'editor-icons';
-  src: url('font/editor-icons.eot?67363781');
-  src: url('font/editor-icons.eot?67363781#iefix') format('embedded-opentype'),
-       url('font/editor-icons.woff2?67363781') format('woff2'),
-       url('font/editor-icons.woff?67363781') format('woff'),
-       url('font/editor-icons.ttf?67363781') format('truetype'),
-       url('font/editor-icons.svg?67363781#editor-icons') format('svg');
+  src: url('fonts/editor-icons.eot?67363781');
+  src: url('fonts/editor-icons.eot?67363781#iefix') format('embedded-opentype'),
+       url('fonts/editor-icons.woff2?67363781') format('woff2'),
+       url('fonts/editor-icons.woff?67363781') format('woff'),
+       url('fonts/editor-icons.ttf?67363781') format('truetype'),
+       url('fonts/editor-icons.svg?67363781#editor-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -20,7 +20,7 @@
 }
 */
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+ [class^="editor-icon-"]:before, [class*=" editor-icon-"]:before {
   font-family: "editor-icons";
   font-style: normal;
   font-weight: normal;
@@ -55,5 +55,5 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-upload:before { content: '\e804'; } /* '' */
-.icon-publish:before { content: '\e805'; } /* '' */
+.editor-icon-upload:before { content: '\e804'; } /* '' */
+.editor-icon-publish:before { content: '\e805'; } /* '' */
