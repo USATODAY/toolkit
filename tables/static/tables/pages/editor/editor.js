@@ -7,6 +7,7 @@
         'stepper',
         'upload',
         'edit',
+        'publish',
         'angular-loading-bar'
     ])
 
@@ -27,7 +28,11 @@
                 templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/edit/edit.html',
                 reloadOnSearch: false
             })
-            //TODO create publish page
+            .when('/publish/:token', {
+                controller: 'edit',
+                templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/publish/publish.html',
+                reloadOnSearch: false
+            })
             .when('/publish/:token', {
                 controller: 'publish',
                 templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/publish/publish.html',
