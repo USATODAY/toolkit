@@ -1,14 +1,14 @@
-<div id="viz" class="editable">
+<div id="viz" ng-show="viz">
     <div class="chatter-header chatter clearfix">
         <div class="chatter-title-wrapper">
-            <h1 class="chatter-title" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
+            <h1 class="chatter-title">{{ viz.title }}</h1>
         </div>
-        <p class="chatter-description" editable-textarea="viz.description">{{ viz.description || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
+        <p class="chatter-description">{{ viz.description }}</p>
     </div>
     <div class="viz-content">
-        <responsive-table url="{{ tableDataUrl }}"></responsive-table>
+        <responsive-table table-data="viz.table_data"></responsive-table>
     </div>
     <div class="chatter-footer chatter">
-        <p><span class="chatter-source">Source</span>: <span editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>
+        <p><span class="chatter-source">Source</span>: {{ viz.source }}</p>
     </div>
 </div>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Table Viz{% endblock %}
+
+{% block body_attrs %}ng-app="app"{% endblock %}
+
+{% block content %}
+    <table-viz url="{% url 'table-viz' %}"></table-viz>
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <script>
+    (function (angular) {
+        'use strict';
+
+        angular.module('app', [
+            'ngTouch',
+            'table-viz'
+        ])
+
+    })(window.angular);
+    </script>
+    <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
+    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+{% endblock %}

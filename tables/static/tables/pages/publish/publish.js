@@ -13,7 +13,7 @@
             $location.path('upload');
         }
 
-        $scope.publish_link = 'http://www.gannett-cdn.com/experiments/usatoday/responsive/data-tables/?data-id=' + id;
+        $scope.publish_link = 'http://www.gannett-cdn.com/experiments/usatoday/responsive/data-tables/?id=' + id;
         $scope.edit_link = $location.absUrl().split('publish/')[0] + 'edit/' + $routeParams.token;
 
         $scope.copy_input_click = function($event) {

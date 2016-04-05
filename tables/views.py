@@ -16,12 +16,8 @@ ftp_password = os.environ['FTP_PASSWORD']
 ftp_host = 'usatoday.upload.akamai.com'
 
 
-# preview table viz
-def preview(request):
-    return render_to_response('tables/table.html', {
-        'title': 'My Table',
-        'data': 'tables/data/sample.json'
-    })
+def viewer(request):
+    return render_to_response('tables/viewer.html')
 
 
 # editor view, requires csrf_token to call backend calls
@@ -101,14 +97,14 @@ def table_viz(request):
                     }
         elif request.method == 'GET':
             token = request.GET.get('token', None)
+            id = request.GET.get('id', None)
             if token is not None:
-                try:
-                    id = int(signer.unsign(token))
-                    if id is not None:
-                        response = get_table_viz_data(id)
-                        response['token'] = token
-                except Exception as e:
-                    pass
+                id = int(signer.unsign(token))
+            elif id:
+                id = int(id)
+            if id is not None:
+                response = get_table_viz_data(id)
+                response['token'] = token
     except Exception as e:
         pass
     return JsonResponse(response)
