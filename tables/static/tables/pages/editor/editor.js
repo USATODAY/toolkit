@@ -43,7 +43,7 @@
             });
     
         // configure html5 links
-        $locationProvider.html5Mode(false);
+        $locationProvider.html5Mode(true);
     }])
 
     .controller('editor', ['$scope', function ($scope) {
