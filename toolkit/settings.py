@@ -139,7 +139,3 @@ BOWER_INSTALLED_APPS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-FTP_USER = os.environ['FTP_USER']
-FTP_PASSOWRD = os.environ['FTP_PASSWORD']
-FTP_HOST = 'usatoday.upload.akamai.com'

@@ -6,8 +6,6 @@
 
     .controller('publish', ['$scope', '$routeParams', '$location', function ($scope, $routeParams, $location) {
 
-        console.log($routeParams.token);
-
         var id = $routeParams.token ? $routeParams.token.split(':')[0] : null;
 
         // id not found, forward user to start upload

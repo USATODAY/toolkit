@@ -7,13 +7,8 @@
         'stepper',
         'upload',
         'edit',
-        'publish',
-        'angular-loading-bar'
+        'publish'
     ])
-
-    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.latencyThreshold = 200;
-    }])
     
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     

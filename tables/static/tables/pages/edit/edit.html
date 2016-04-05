@@ -6,16 +6,16 @@
     <div id="viz" class="editable" ng-if="viz">
         <div class="chatter-header chatter clearfix">
             <div class="chatter-title-wrapper">
-                <h1 class="chatter-title" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
+                <h1 class="chatter-title" onaftersave="save()" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
             </div>
-            <p class="chatter-description" editable-textarea="viz.chatter">{{ viz.chatter || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
+            <p class="chatter-description" onaftersave="save()" editable-textarea="viz.chatter">{{ viz.chatter || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
         </div>
         <div class="viz-content">
             <responsive-table table-data="viz.table_data"></responsive-table>
         </div>
         <div class="chatter-footer chatter">
-            <p><span class="chatter-source">Source</span>: <span editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>
+            <p><span class="chatter-source">Source</span>: <span onaftersave="save()" editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>
         </div>
     </div>
 </div>
-<div class="slide-btn editor-icon-publish" ng-click="publish_btn()"><span class="slide-btn-text">Publish</span></div>
+<div class="slide-btn" ng-class="{'spinner-icon is-publishing': is_publishing, 'editor-icon-publish': !is_publishing}" ng-click="publish_btn()"><span class="slide-btn-text">Publish</span></div>

@@ -11,11 +11,25 @@
 
     .controller('edit', ['$scope', '$location', '$routeParams', 'SweetAlert', '$api', function ($scope, $location, $routeParams, SweetAlert, $api) {
         var self = this;
+
+        this.get_cleaned_data = function() {
+            var data = angular.copy($scope.viz);
+            delete data.table_data;
+            return data;
+        };
         
         this.publish = function() {
-            $api.set_table_viz($scope.viz).then(function() {
+            var data = self.get_cleaned_data();
+            data.publish = true;
+            $api.set_table_viz(data).then(function(response) {
                 $location.path('publish/' + $routeParams.token);
             });
+        };
+
+        $scope.save = function() {
+            var data = self.get_cleaned_data();
+            data.publish = false;
+            $api.set_table_viz(data);
         };
 
         $scope.publish_btn = function() {
@@ -33,7 +47,8 @@
                 is_valid = false;
                 error_msg = 'You must have a source to publish. Click on the source to edit it.'
             }
-            if (is_valid) {
+            if (is_valid && !$scope.is_publshing) {
+                $scope.is_publishing = true;
                 self.publish();
             }
             else {

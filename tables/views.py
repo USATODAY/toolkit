@@ -7,10 +7,13 @@ from django.http import JsonResponse
 from django.core.signing import Signer
 from ftp_manager import upload
 import json
-from django.conf import settings
+import os
 
 signer = Signer()
 host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
+ftp_user = os.environ['FTP_USER']
+ftp_password = os.environ['FTP_PASSWORD']
+ftp_host = 'usatoday.upload.akamai.com'
 
 
 # preview table viz
@@ -80,28 +83,32 @@ def table_viz(request):
         'error': True,
         'message': 'Bad request'
     }
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        form = TableVizPublish(data)
-        if form.is_valid():
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.body)
             id = int(signer.unsign(data['token']))
             table_viz = set_table_viz_data(id, data)
             response = get_table_viz_data(id)
-            file_name = '%s.json' % id
-            upload(settings.FTP_HOST, settings.FTP_USER, settings.FTP_PASSOWRD, host_path, file_content=json.dumps(response), file_name=file_name)
-        else:
-            response = {
-                'error': True,
-                'message': 'Input data is invalid'
-            }
-    elif request.method == 'GET':
-        token = request.GET.get('token', None)
-        if token is not None:
-            try:
-                id = int(signer.unsign(token))
-                if id is not None:
-                    response = get_table_viz_data(id)
-                    response['token'] = token
-            except Exception as e:
-                pass
+            if data['publish']:
+                form = TableVizPublish(data)
+                if form.is_valid():
+                    file_name = '%s.json' % id
+                    upload(ftp_host, ftp_user, ftp_password, host_path, file_content=json.dumps(response), file_name=file_name)
+                else:
+                    response = {
+                        'error': True,
+                        'message': 'Input data is invalid'
+                    }
+        elif request.method == 'GET':
+            token = request.GET.get('token', None)
+            if token is not None:
+                try:
+                    id = int(signer.unsign(token))
+                    if id is not None:
+                        response = get_table_viz_data(id)
+                        response['token'] = token
+                except Exception as e:
+                    pass
+    except Exception as e:
+        pass
     return JsonResponse(response)
