@@ -6,27 +6,6 @@ import xlrd
 import csv
 from openpyxl.workbook import Workbook
 from openpyxl.reader.excel import load_workbook, InvalidFileException
-#
-# def open_xls_as_xlsx(filename):
-#     # first open using xlrd
-#     book = xlrd.open_workbook(filename)
-#     index = 0
-#     nrows, ncols = 0, 0
-#     while nrows * ncols == 0:
-#         sheet = book.sheet_by_index(index)
-#         nrows = sheet.nrows
-#         ncols = sheet.ncols
-#         index += 1
-#
-#     # prepare a xlsx sheet
-#     book1 = Workbook()
-#     sheet1 = book1.get_active_sheet()
-#
-#     for row in xrange(0, nrows):
-#         for col in xrange(0, ncols):
-#             sheet1.cell(row=row, column=col).value = sheet.cell_value(row, col)
-#
-#     return book1
 
 
 def convert(path, filters=None, export_path=None, compress=False):
@@ -37,6 +16,8 @@ def convert(path, filters=None, export_path=None, compress=False):
         data = extract_data_from_xlsx(path)
     if extension == '.csv':
         data = extract_data_from_csv(path)
+    if extension == '.xls':
+        data = extract_data_from_xls(path)
     if filters is not None:
         data = filter_data(data, filters)
     if compress:
@@ -96,7 +77,7 @@ def extract_data_from_csv(file_path):
     csv_file = open(file_path)
     csv_file_reader = csv.reader(csv_file)
     for row_idx, row in enumerate(csv_file_reader):
-        row_data = {}
+        row_data = collections.OrderedDict()
         for column, cell_val in enumerate(row):
             # populate column headers
             if row_idx == 0:
@@ -125,6 +106,26 @@ def extract_data_from_xlsx(file_path):
             else:
                 row_data[column_headers[column]] = cell_val
         if row != 1:
+            data.append(row_data)
+    return data
+
+
+def extract_data_from_xls(filename):
+    book = xlrd.open_workbook(filename)
+    sheet = book.sheet_by_index(0)
+    data = []
+    column_headers = {}
+    for row in range(0, sheet.nrows):
+        row_data = collections.OrderedDict()
+        for column in range(0, sheet.ncols):
+            cell_val = sheet.cell_value(row, column)
+            # populate column headers
+            if row == 0:
+                column_headers[column] = cell_val
+            # populate data
+            else:
+                row_data[column_headers[column]] = cell_val
+        if row != 0:
             data.append(row_data)
     return data
 
