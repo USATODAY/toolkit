@@ -1,4 +1,5 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load staticfiles %}
+<!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en"><![endif]-->
 <!--[if gt IE 9]><!-->
 <html lang="en"> <!--<![endif]-->
@@ -26,30 +27,20 @@
     {% else %}
         <table-viz url="{% url 'table-viz' %}"></table-viz>
     {% endif %}
+    {% if use_prod %}
+        <script src="{% static 'tables/dist/table_viz/table-viz-libs.min.js' %}"></script>
+        <script src="{% static 'tables/dist/table_viz/table-viz.min.js' %}"></script>
+    {% elif use_deployment %}
+        <script src="table-viz-libs.min.js"></script>
+        <script src="table-viz.min.js"></script>
+    {% else %}
+        <script src="{% static 'angular/angular.min.js' %}"></script>
+        <script src="{% static 'angular-touch/angular-touch.min.js' %}"></script>
+        <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
+        <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
+        <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+    {% endif %}
+    {% if not use_deployment %}<script>window.STATIC_ROOT = '/static/'; </script>{% endif %}
+    <script>(function (angular) { 'use strict'; angular.module('app', ['ngTouch', 'table-viz']); })(window.angular);</script>
 </body>
-{% if use_prod %}
-    <script src="{% static 'tables/dist/table_viz/table-viz-libs.min.js' %}"></script>
-    <script src="{% static 'tables/dist/table_viz/table-viz.min.js' %}"></script>
-{% elif use_deployment %}
-    <script src="table-viz-libs.min.js"></script>
-    <script src="table-viz.min.js"></script>
-{% else %}
-    <script src="{% static 'angular/angular.min.js' %}"></script>
-    <script src="{% static 'angular-touch/angular-touch.min.js' %}"></script>
-    <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
-    <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
-    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
-{% endif %}
-<script>
-    window.STATIC_ROOT = '/static/';
-    (function (angular) {
-        'use strict';
-
-        angular.module('app', [
-            'ngTouch',
-            'table-viz'
-        ])
-
-    })(window.angular);
-</script>
 </html>
