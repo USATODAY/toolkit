@@ -2,7 +2,6 @@
     'use strict';
 
     angular.module('edit', [
-        'table-viz',
         'responsive-table',
         'xeditable',
         'oitozero.ngSweetAlert',

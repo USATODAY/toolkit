@@ -98,11 +98,14 @@ def table_viz(request):
         elif request.method == 'GET':
             token = request.GET.get('token', None)
             id = request.GET.get('id', None)
+            # id is in path
+            if token is None and id is None and '.json' in request.path:
+                id = request.path[request.path.rfind('/')+1:request.path.rfind('.json')]
+            # token is provided, extract id
             if token is not None:
                 id = int(signer.unsign(token))
-            elif id:
-                id = int(id)
             if id is not None:
+                id = int(id)
                 response = get_table_viz_data(id)
                 response['token'] = token
     except Exception as e:

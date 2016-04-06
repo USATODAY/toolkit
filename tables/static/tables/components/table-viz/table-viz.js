@@ -17,9 +17,6 @@
     })
 
     .controller('tableViz', ['$scope', '$http', '$q', '$location', function($scope, $http, $q, $location) {
-    //    TODO fetch data
-    //    populate viz
-
 
         this.query_string = function () {
             // This function is anonymous, is executed immediately and
@@ -46,10 +43,10 @@
         };
 
         this.fetch = function() {
-            var deferred = $q.defer();
+            var deferred = $q.defer(),
+                url = $scope.url + this.query_string().id + '.json';
             $http({
-                url: $scope.url,
-                params: this.query_string().id
+                url: url
             })
             .success(function (response, status, headers, config) {
                 deferred.resolve(response);
@@ -62,7 +59,7 @@
         };
 
         this.fetch().then(function(response){
-            console.log(response);
+            $scope.viz = response;
         });
         
     }]);

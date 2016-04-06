@@ -1,9 +1,9 @@
-<div id="viz" ng-show="viz">
+<div id="viz" ng-if="viz">
     <div class="chatter-header chatter clearfix">
         <div class="chatter-title-wrapper">
             <h1 class="chatter-title">{{ viz.title }}</h1>
         </div>
-        <p class="chatter-description">{{ viz.description }}</p>
+        <p class="chatter-description">{{ viz.chatter }}</p>
     </div>
     <div class="viz-content">
         <responsive-table table-data="viz.table_data"></responsive-table>
