@@ -17,7 +17,14 @@ ftp_host = 'usatoday.upload.akamai.com'
 
 
 def viewer(request):
-    return render_to_response('tables/viewer.html')
+    prod_files = request.GET.get('use_prod', None)
+    deployment_files = request.GET.get('use_deployment', None)
+    use_prod = prod_files == 'true'
+    use_deployment = deployment_files == 'true'
+    return render_to_response('tables/viewer.html', {
+        'use_prod': use_prod,
+        'use_deployment': use_deployment
+    })
 
 
 # editor view, requires csrf_token to call backend calls

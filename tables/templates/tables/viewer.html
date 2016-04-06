@@ -1,24 +1,47 @@
-{% extends 'base.html' %}
-
-{% load staticfiles %}
-
-{% block title %}Table Viz{% endblock %}
-
-{% block body_attrs %}ng-app="app"{% endblock %}
-
-{% block content %}
-    <table-viz url="{% url 'table-viz' %}"></table-viz>
-{% endblock %}
-
-{% block css %}
-    <link href="{% static 'tables/app.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block js %}
-    <script>
+{% load staticfiles %}<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <title>USA Today - Table Viz</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    {% if use_prod %}
+        <link href="{% static 'tables/dist/table_viz/table-viz.css' %}" rel="stylesheet">
+    {% elif use_deployment %}
+        <link href="table-viz.css" rel="stylesheet">
+    {% else %}
+        <link href="{% static 'common/libs/bootstrap.custom/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'tables/app.css' %}" rel="stylesheet">
+        <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
+        <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
+        <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
+    {% endif %}
+</head>
+<body ng-app="app">
+    {% if use_deployment %}
+        <table-viz url="/experiments/usatoday/responsive/data-tables/data/"></table-viz>
+    {% else %}
+        <table-viz url="{% url 'table-viz' %}"></table-viz>
+    {% endif %}
+</body>
+{% if use_prod %}
+    <script src="{% static 'tables/dist/table_viz/table-viz-libs.min.js' %}"></script>
+    <script src="{% static 'tables/dist/table_viz/table-viz.min.js' %}"></script>
+{% elif use_deployment %}
+    <script src="table-viz-libs.min.js"></script>
+    <script src="table-viz.min.js"></script>
+{% else %}
+    <script src="{% static 'angular/angular.min.js' %}"></script>
+    <script src="{% static 'angular-touch/angular-touch.min.js' %}"></script>
+    <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
+    <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
+    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+{% endif %}
+<script>
+    window.STATIC_ROOT = '/static/';
     (function (angular) {
         'use strict';
 
@@ -28,7 +51,5 @@
         ])
 
     })(window.angular);
-    </script>
-    <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
-    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
-{% endblock %}
+</script>
+</html>

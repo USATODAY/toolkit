@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     {% block head %}{% endblock %}
-    <link href="{%  static 'common/libs/bootstrap.custom/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'common/libs/bootstrap.custom/bootstrap.min.css' %}" rel="stylesheet">
     {% block css %}{% endblock %}
 </head>
     <body {% block body_attrs %}{% endblock %}>
@@ -18,9 +18,9 @@
     <script>
         window.STATIC_ROOT = '/static/'
     </script>
-    <script src="{%  static 'angular/angular.min.js' %}"></script>
-    <script src="{%  static 'angular-touch/angular-touch.min.js' %}"></script>
-    <script src="{%  static 'angular-route/angular-route.min.js' %}"></script>
-    <script src="{%  static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
+    <script src="{% static 'angular/angular.min.js' %}"></script>
+    <script src="{% static 'angular-touch/angular-touch.min.js' %}"></script>
+    <script src="{% static 'angular-route/angular-route.min.js' %}"></script>
+    <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
     {% block js %}{% endblock %}
 </html>
