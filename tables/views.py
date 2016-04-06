@@ -7,13 +7,8 @@ from django.http import JsonResponse
 from django.core.signing import Signer
 from ftp_manager import upload
 import json
-import os
 
 signer = Signer()
-host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
-ftp_user = os.environ['FTP_USER']
-ftp_password = os.environ['FTP_PASSWORD']
-ftp_host = 'usatoday.upload.akamai.com'
 
 
 def viewer(request):
@@ -39,7 +34,7 @@ def editor(request):
 def media_upload(request):
     response = {
         'error': True,
-        'message': 'Request must be POST'
+        'message': 'Bad Request'
     }
     # Handle file upload
     if request.method == 'POST':
@@ -48,10 +43,11 @@ def media_upload(request):
             # create a new table entry
             table = TableViz(file=request.FILES['file'])
             table.save()
-            response = {
-                'success': True,
-                'token': signer.sign(table.id)
-            }
+            if table.id:
+                response = {
+                    'success': True,
+                    'token': signer.sign(table.id)
+                }
         else:
             response = {
                 'error': True,
@@ -96,7 +92,7 @@ def table_viz(request):
                 form = TableVizPublish(data)
                 if form.is_valid():
                     file_name = '%s.json' % id
-                    upload(ftp_host, ftp_user, ftp_password, host_path, file_content=json.dumps(response), file_name=file_name)
+                    upload(file_content=json.dumps(response), file_name=file_name)
                 else:
                     response = {
                         'error': True,

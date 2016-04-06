@@ -5,6 +5,7 @@ from django.dispatch.dispatcher import receiver
 from tables.data import xlsx_to_json
 from django.core.files.base import ContentFile
 import json
+import logging
 
 
 class TableViz(models.Model):
@@ -31,6 +32,11 @@ def document_delete(sender, instance, **kwargs):
 @receiver(post_save, sender=TableViz)
 def create_json(sender, instance, **kwargs):
     if instance.json.name is None:
-        json_filename = instance.file.path[instance.file.path.rindex('/') + 1:instance.file.path.rindex('.')] + '.json'
-        contents = xlsx_to_json.convert(instance.file.path, compress=True)
-        instance.json.save(json_filename, ContentFile(json.dumps(contents)))
+        try:
+            json_filename = instance.file.path[instance.file.path.rindex('/') + 1:instance.file.path.rindex('.')] + '.json'
+            contents = xlsx_to_json.convert(instance.file.path, compress=True)
+            instance.json.save(json_filename, ContentFile(json.dumps(contents)))
+        except Exception as e:
+            instance.delete()
+            logging.error(e.message)
+            pass

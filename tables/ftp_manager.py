@@ -3,8 +3,13 @@ import os
 import logging
 from cStringIO import StringIO
 
+host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
+username = os.environ['FTP_USER']
+password = os.environ['FTP_PASSWORD']
+host = 'usatoday.upload.akamai.com'
 
-def upload(host, username, password, host_path, file_content=None, file_name=None, file_path=None):
+
+def upload(file_content=None, file_name=None, file_path=None):
     session = None
     try:
         logging.debug('Uploading %s' % file_name)
@@ -30,7 +35,7 @@ def upload(host, username, password, host_path, file_content=None, file_name=Non
             session.quit()
 
 
-def delete(host, username, password, host_path, file_path):
+def delete(file_path):
     try:
         file_name = file_path[file_path.rindex('/') + 1:]
         session = ftplib.FTP(host, username, password, host)
@@ -40,14 +45,3 @@ def delete(host, username, password, host_path, file_path):
         session.quit()
     except Exception as e:
         logging.error(e.message)
-
-
-# TODO create test
-# TODO test delete
-def test_upload():
-    username = os.environ['FTP_USER']
-    password = os.environ['FTP_PASSWORD']
-    host = 'usatoday.upload.akamai.com'
-    host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
-    file_path = '/Users/plinders/Projects/toolkit/media/documents/sample_8XI2bgl.json'
-    upload(host, username, password, host_path, file_path=file_path)
