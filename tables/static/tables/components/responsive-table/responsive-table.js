@@ -68,7 +68,6 @@
 
         // use url to populate table data
         if (!$scope.tableData && $scope.url) {
-            // TODO make conditional, url might not be provided and data might be
             $tableManager.init($scope.url, false).then(function (response) {
                 $scope.tableData = response;
                 self.refresh_view();

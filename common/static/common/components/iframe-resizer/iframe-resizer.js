@@ -31,12 +31,12 @@
                 }, '*');
                 cur_height = new_height;
                 // uncomment below to debug size
-                // console.log(new_height);
+                console.log(new_height);
             }
         };
 
         this.get_height = function () {
-            var height = (self.el.offsetHeight !== undefined) ? self.el.offsetHeight : 0,
+            var height = (self.el.offsetHeight !== 0) ? self.el.offsetHeight : 0,
                 style = getComputedStyle(self.el);
             height += parseInt(style.marginTop) + parseInt(style.marginBottom) + parseInt(style.borderBottomWidth) + parseInt(style.borderTopWidth);
             return height;

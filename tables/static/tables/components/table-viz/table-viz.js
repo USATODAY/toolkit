@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('table-viz', [
-        'responsive-table'
+        'responsive-table',
+        'iframe-resizer'
     ])
 
     .directive('tableViz', function () {
@@ -16,7 +17,7 @@
         };
     })
 
-    .controller('tableViz', ['$scope', '$http', '$q', '$location', function($scope, $http, $q, $location) {
+    .controller('tableViz', ['$scope', '$http', '$q', '$iframeResizer', '$element', '$timeout', function($scope, $http, $q, $iframeResizer, $element, $timeout) {
 
         this.query_string = function () {
             // This function is anonymous, is executed immediately and
@@ -60,6 +61,9 @@
 
         this.fetch().then(function(response){
             $scope.viz = response;
+            $timeout(function() {
+                $iframeResizer.watch($element[0]);
+            }, 10);
         });
         
     }]);
