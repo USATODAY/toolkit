@@ -93,6 +93,8 @@ def table_viz(request):
                 if form.is_valid():
                     file_name = '%s.json' % id
                     upload(file_content=json.dumps(response), file_name=file_name)
+                    table_viz.published = True
+                    table_viz.save()
                 else:
                     response = {
                         'error': True,

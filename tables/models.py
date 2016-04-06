@@ -4,6 +4,7 @@ from django.db.models.signals import pre_delete, post_save
 from django.dispatch.dispatcher import receiver
 from tables.data import xlsx_to_json
 from django.core.files.base import ContentFile
+import ftp_manager
 import json
 import logging
 
@@ -26,7 +27,10 @@ def document_delete(sender, instance, **kwargs):
     # Pass false so FileField doesn't save the model.
     instance.file.delete(False)
     instance.json.delete(False)
-#     TODO if published, delete from ftp file
+    # remove published files
+    if instance.published:
+        file_name = '%s.json' % instance.id
+        ftp_manager.delete(file_name)
 
 
 @receiver(post_save, sender=TableViz)

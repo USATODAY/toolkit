@@ -1,11 +1,9 @@
-from openpyxl import load_workbook
 import json
 import os.path
 import collections
 import xlrd
 import csv
-from openpyxl.workbook import Workbook
-from openpyxl.reader.excel import load_workbook, InvalidFileException
+from openpyxl.reader.excel import load_workbook
 
 
 def convert(path, filters=None, export_path=None, compress=False):

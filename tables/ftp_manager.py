@@ -35,9 +35,8 @@ def upload(file_content=None, file_name=None, file_path=None):
             session.quit()
 
 
-def delete(file_path):
+def delete(file_name):
     try:
-        file_name = file_path[file_path.rindex('/') + 1:]
         session = ftplib.FTP(host, username, password, host)
         session.cwd(host_path)
         session.delete(file_name)
