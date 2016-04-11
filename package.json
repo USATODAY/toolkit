@@ -18,7 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "grunt tables-build"
+    "postinstall": "bower install && grunt tables-build"
   },
   "repository": {
     "type": "git",
