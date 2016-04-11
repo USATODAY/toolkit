@@ -24,7 +24,7 @@
                 reloadOnSearch: false
             })
             .when('/publish/:token', {
-                controller: 'edit',
+                controller: 'publish',
                 templateUrl: (window.STATIC_ROOT || '') + 'tables/pages/publish/publish.html',
                 reloadOnSearch: false
             })
