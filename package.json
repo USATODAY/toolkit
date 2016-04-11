@@ -1,0 +1,31 @@
+{
+  "name": "toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.2.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-fetch-pages": "^2.0.0",
+    "grunt-ftp-deploy": "^0.1.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/USATODAY/toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/USATODAY/toolkit/issues"
+  },
+  "homepage": "https://github.com/USATODAY/toolkit#readme"
+}

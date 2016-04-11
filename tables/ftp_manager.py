@@ -4,8 +4,8 @@ import logging
 from cStringIO import StringIO
 
 host_path = '/17200/experiments/usatoday/responsive/data-tables/data'
-username = os.environ['FTP_USER']
-password = os.environ['FTP_PASSWORD']
+username = os.environ['FTP_USER'] if 'FTP_USER' in os.environ else None
+password = os.environ['FTP_PASSWORD'] if 'FTP_PASSWORD' in os.environ else None
 host = 'usatoday.upload.akamai.com'
 
 
@@ -20,7 +20,7 @@ def upload(file_content=None, file_name=None, file_path=None):
         if file_path is None and file_name is None:
             raise Exception('File Name is required when file path is not provided')
         if file_content is not None:
-            file_content = StringIO(file_content)
+            file_content = StringIO(str(file_content))
         STOR_cmd = 'STOR %s' % file_name
         session = ftplib.FTP(host, username, password, host)
         session.cwd(host_path)                 # file to send
