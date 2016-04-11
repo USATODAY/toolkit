@@ -28,6 +28,7 @@
     color: rgba(0,0,0,.1);
     font-size: 6.4rem;
     margin: 0 auto 12px auto;
+    height: 96px;
 }
 .drag-over {
     border: 5px dashed #00897B;

@@ -24,17 +24,21 @@
 {% endblock %}
 
 {% block css %}
+    {% if USE_PROD_STATIC %}
+        <link href="{% static 'dist/tables/tables.css' %}" rel="stylesheet">
+    {% else %}
     <link href="{% static 'common/app.css' %}" rel="stylesheet">
     <link href="{% static 'bower_components/sweetalert/dist/sweetalert.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/stepper/stepper.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/pages/editor/editor.css' %}" rel="stylesheet">
-    <link href="{% static 'tables/pages/editor/editor-icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/pages/editor/editor.css' %}" rel="stylesheet">
+    <link href="{% static 'tables/pages/editor/editor-icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/upload/upload.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/edit/edit.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/publish/publish.css' %}" rel="stylesheet">
+    {% endif %}
 {% endblock %}
 
 {% block js %}
@@ -49,15 +53,20 @@
             csrf_token: "{{ csrf_token }}"
         }
     </script>
-    <script src="{% static 'bower_components/ng-file-upload/ng-file-upload.min.js' %}"></script>
-    <script src="{% static 'bower_components/angular-xeditable/dist/js/xeditable.js' %}"></script>
-    <script src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
-    <script src="{% static 'bower_components/ngSweetAlert/SweetAlert.min.js' %}"></script>
-    <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
-    <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
-    <script src="{% static 'tables/pages/editor/editor-api.js' %}"></script>
-    <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
-    <script src="{% static 'tables/pages/upload/upload.js' %}"></script>
-    <script src="{% static 'tables/pages/edit/edit.js' %}"></script>
-    <script src="{% static 'tables/pages/publish/publish.js' %}"></script>
+    {% if USE_PROD_STATIC %}
+        <script src="{% static 'dist/tables/tables.min.js' %}"></script>
+    {% else %}
+        <script src="{% static 'bower_components/ng-file-upload/ng-file-upload.min.js' %}"></script>
+        <script src="{% static 'bower_components/angular-xeditable/dist/js/xeditable.js' %}"></script>
+        <script src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
+        <script src="{% static 'bower_components/ngSweetAlert/SweetAlert.min.js' %}"></script>
+        <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
+        <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
+        <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+        <script src="{% static 'tables/pages/editor/editor-api.js' %}"></script>
+        <script src="{% static 'tables/pages/editor/editor.js' %}"></script>
+        <script src="{% static 'tables/pages/upload/upload.js' %}"></script>
+        <script src="{% static 'tables/pages/edit/edit.js' %}"></script>
+        <script src="{% static 'tables/pages/publish/publish.js' %}"></script>
+    {% endif %}
 {% endblock %}

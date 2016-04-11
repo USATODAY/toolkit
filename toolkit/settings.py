@@ -22,7 +22,7 @@ SECRET_KEY = 'uhf8oyzpulpb^z9h#-1a_#(%6k8ve388@ruegij!ypkplpevf_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'herokuapp.com', '127.0.0.1']
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'common')
 
@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tables',
     'common',
+    'tables',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'common.context_processors.use_prod_static'
             ],
         },
     },
@@ -101,6 +102,8 @@ if 'USE_PROD_DATA' in os.environ:
             'PORT': '5432'
         }
     }
+
+USE_PROD_STATIC = 'USE_PROD_STATIC' in os.environ
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

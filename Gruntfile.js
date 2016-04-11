@@ -3,19 +3,38 @@ module.exports = function (grunt) {
         clean: {
             table_viz: {
                 src: [
-                    'tables/static/tables/dist'
+                    'tables/static/dist/table_viz'
+                ]
+            },
+            common: {
+                src: [
+                    'common/static/dist/common'
+                ]
+            },
+            tables: {
+                src: [
+                    'tables/static/dist/tables'
                 ]
             }
         },
         cssmin: {
             table_viz: {
                 files: {
-                    'tables/static/tables/dist/table_viz/table-viz.css': [
+                    'tables/static/dist/table_viz/table-viz.css': [
                         'common/static/common/libs/bootstrap.custom/bootstrap.min.css',
-                        'tables/static/tables/app.css',
+                        'common/static/common/app.css',
                         'tables/static/tables/components/table-viz/table-viz.css',
                         'tables/static/tables/components/responsive-table/responsive-table.css',
                         'tables/static/tables/components/responsive-table/icons.css'
+                    ]
+                }
+            },
+            tables: {
+                files: {
+                    'tables/static/dist/tables/tables.css': [
+                        'common/static/common/libs/bootstrap.custom/bootstrap.min.css',
+                        'common/static/common/app.css',
+                        'tables/static/tables/**/**/*.css'
                     ]
                 }
             }
@@ -26,10 +45,23 @@ module.exports = function (grunt) {
             },
             table_viz: {
                 files: {
-                    'tables/static/tables/dist/table_viz/table-viz.min.js': [
+                    'tables/static/dist/table_viz/table-viz.min.js': [
                         'common/static/common/components/iframe-resizer/iframe-resizer.js',
                         'tables/static/tables/components/table-viz/table-viz.js',
                         'tables/static/tables/components/responsive-table/responsive-table.js'
+                    ]
+                }
+            },
+            tables: {
+                files: {
+                    'tables/static/dist/tables/tables.min.js': [
+                        'common/static/bower_components/ng-file-upload/ng-file-upload.min.js',
+                        'common/static/bower_components/angular-xeditable/dist/js/xeditable.js',
+                        'common/static/bower_components/sweetalert/dist/sweetalert.min.js',
+                        'common/static/bower_components/ngSweetAlert/SweetAlert.min.js',
+                        'common/static/common/components/iframe-resizer/iframe-resizer.js',
+                        'tables/static/tables/**/**/*.js',
+                        '!tables/static/tables/components/table-viz/table-viz.js'
                     ]
                 }
             }
@@ -40,22 +72,30 @@ module.exports = function (grunt) {
             },
             table_viz_libs: {
                 src: [
-                    'common/static/common/bower_components/angular/angular.min.js',
-                    'common/static/common/bower_components/angular-touch/angular-touch.min.js'
+                    'common/static/bower_components/angular/angular.min.js',
+                    'common/static/bower_components/angular-touch/angular-touch.min.js'
                 ],
-                dest: 'tables/static/tables/dist/table_viz/table-viz-libs.min.js'
+                dest: 'tables/static/dist/table_viz/table-viz-libs.min.js'
+            },
+            common: {
+                src: [
+                    'common/static/bower_components/angular/angular.min.js',
+                    'common/static/bower_components/angular-touch/angular-touch.min.js',
+                    'common/static/bower_components/angular-route/angular-route.min.js'
+                ],
+                dest: 'common/static/dist/common/app.libs.min.js'
             }
         },
         copy: {
             table_viz_futura_today: {
                 src: ['common/static/common/fonts/*'],
-                dest: 'tables/static/tables/dist/table_viz/fonts',
+                dest: 'tables/static/dist/table_viz/fonts',
                 expand: true,
                 flatten: true
             },
             table_viz_icons: {
                 src: ['tables/static/tables/components/**/fonts/*'],
-                dest: 'tables/static/tables/dist/table_viz/fonts',
+                dest: 'tables/static/dist/table_viz/fonts',
                 expand: true,
                 flatten: true
             },
@@ -65,8 +105,22 @@ module.exports = function (grunt) {
                     'responsive-table/*.html',
                     'table-viz/*.html'
                 ],
-                dest: 'tables/static/tables/dist/table_viz/tables/components',
+                dest: 'tables/static/dist/table_viz/tables/components',
                 expand: true
+            },
+            tables_icons: {
+                src: [
+                    'tables/static/tables/**/**/fonts/*'
+                ],
+                dest: 'tables/static/dist/tables/fonts',
+                expand: true,
+                flatten: true
+            },
+            tables_futura_today: {
+                src: ['common/static/common/fonts/*'],
+                dest: 'tables/static/dist/tables/fonts',
+                expand: true,
+                flatten: true
             }
         },
         fetchpages: {
@@ -127,5 +181,14 @@ module.exports = function (grunt) {
     grunt.registerTask('table-viz-build-deploy', [
         'table-viz-build',
         'ftp-deploy:table_viz'
+    ]);
+    grunt.registerTask('tables-build', [
+        'clean:common',
+        'clean:tables',
+        'concat:common',
+        'cssmin:tables',
+        'uglify:tables',
+        'copy:tables_icons',
+        'copy:tables_futura_today'
     ]);
 };

@@ -28,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/USATODAY/toolkit/issues"
   },
+  "postinstall": "grunt tables-build",
   "homepage": "https://github.com/USATODAY/toolkit#readme"
 }

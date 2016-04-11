@@ -16,11 +16,14 @@
         {% block content %}{% endblock %}
     </body>
     <script>
-        window.STATIC_ROOT = '/static/'
+        window.STATIC_ROOT = '/static/';
     </script>
+    {% if USE_PROD_STATIC %}
+        <script src="{% static 'dist/common/app.libs.min.js' %}"></script>
+    {% else %}
     <script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
     <script src="{% static 'bower_components/angular-touch/angular-touch.min.js' %}"></script>
     <script src="{% static 'bower_components/angular-route/angular-route.min.js' %}"></script>
-    <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
+    {% endif %}
     {% block js %}{% endblock %}
 </html>
