@@ -17,8 +17,7 @@ html {
 }
 
 body {
-    /*TODO remove times! testing only */
-    font-family: 'Futura Today Normal', times, sans-serif;
+    font-family: 'Futura Today Normal', sans-serif;
 }
 
 .no-select {
