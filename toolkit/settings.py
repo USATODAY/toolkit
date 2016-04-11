@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
     'tables',
     'common',
 ]
@@ -71,8 +70,7 @@ TEMPLATES = [
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
 WSGI_APPLICATION = 'toolkit.wsgi.application'
@@ -141,15 +139,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-
-BOWER_INSTALLED_APPS = (
-    'angular',
-    'angular-touch',
-    'angular-route',
-    'ng-file-upload',
-    'angular-xeditable',
-    'angular-sweetalert'
-)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

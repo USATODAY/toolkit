@@ -25,7 +25,7 @@
 
 {% block css %}
     <link href="{% static 'tables/app.css' %}" rel="stylesheet">
-    <link href="{% static 'sweetalert/dist/sweetalert.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/sweetalert/dist/sweetalert.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/stepper/stepper.css' %}" rel="stylesheet">
     <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
     <link href="{% static 'tables/pages/editor/editor.css' %}" rel="stylesheet">
@@ -49,10 +49,10 @@
             csrf_token: "{{ csrf_token }}"
         }
     </script>
-    <script src="{% static 'ng-file-upload/ng-file-upload.min.js' %}"></script>
-    <script src="{% static 'angular-xeditable/dist/js/xeditable.js' %}"></script>
-    <script src="{% static 'sweetalert/dist/sweetalert.min.js' %}"></script>
-    <script src="{% static 'ngSweetAlert/SweetAlert.min.js' %}"></script>
+    <script src="{% static 'bower_components/ng-file-upload/ng-file-upload.min.js' %}"></script>
+    <script src="{% static 'bower_components/angular-xeditable/dist/js/xeditable.js' %}"></script>
+    <script src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
+    <script src="{% static 'bower_components/ngSweetAlert/SweetAlert.min.js' %}"></script>
     <script src="{% static 'tables/components/stepper/stepper.js' %}"></script>
     <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
     <script src="{% static 'tables/pages/editor/editor-api.js' %}"></script>

@@ -1,5 +1,4 @@
 Django==1.9.4
-django-bower==5.1.0
 et-xmlfile==1.0.1
 gunicorn==19.4.5
 jdcal==1.2
