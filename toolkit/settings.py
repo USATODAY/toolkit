@@ -83,11 +83,26 @@ WSGI_APPLICATION = 'toolkit.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'toolkit',
+        'USER': 'db_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': ''
     }
 }
 
+if 'USE_PROD_DATA' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'd84lfdnj2s30h6',
+            'USER': 'stildtcesyzzwv',
+            'PASSWORD': '5gJU90kHXSPZml99Ipj4Xovm49',
+            'HOST': 'ec2-23-23-184-226.compute-1.amazonaws.com',
+            'PORT': '5432'
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
