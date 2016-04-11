@@ -40,13 +40,19 @@ module.exports = function (grunt) {
             },
             table_viz_libs: {
                 src: [
-                    'common/bower_components/angular/angular.min.js',
-                    'common/bower_components/angular-touch/angular-touch.min.js'
+                    'common/static/common/bower_components/angular/angular.min.js',
+                    'common/static/common/bower_components/angular-touch/angular-touch.min.js'
                 ],
                 dest: 'tables/static/tables/dist/table_viz/table-viz-libs.min.js'
             }
         },
         copy: {
+            table_viz_futura_today: {
+                src: ['common/static/common/fonts/*'],
+                dest: 'tables/static/tables/dist/table_viz/fonts',
+                expand: true,
+                flatten: true
+            },
             table_viz_icons: {
                 src: ['tables/static/tables/components/**/fonts/*'],
                 dest: 'tables/static/tables/dist/table_viz/fonts',
@@ -114,6 +120,7 @@ module.exports = function (grunt) {
         'concat:table_viz_libs',
         'copy:table_viz_icons',
         'copy:table_viz_component_html',
+        'copy:table_viz_futura_today',
         'fetchpages:table_viz',
         'htmlmin:table_viz_index'
     ]);
