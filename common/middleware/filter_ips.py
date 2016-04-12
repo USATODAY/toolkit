@@ -15,9 +15,17 @@ class FilterIPMiddleware(object):
     # Check if client IP is allowed
     def process_request(self, request):
 
-        ip = self.get_client_ip(request)
+        is_allowed = False
 
-        if ip not in settings.ALLOWED_IPS:
+        ip = self.get_client_ip(request)
+        ip = '159.54.138.10'
+
+        for allowed_ip in settings.ALLOWED_IPS:
+
+            if ('*' in allowed_ip and allowed_ip[:allowed_ip.rfind('*')] in ip) or allowed_ip == ip:
+                is_allowed = True
+
+        if not is_allowed:
             raise PermissionDenied
 
         return None
