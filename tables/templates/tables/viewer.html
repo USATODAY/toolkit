@@ -10,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     {% if use_prod %}
-        <link href="{% static 'tables/dist/table_viz/table-viz.css' %}" rel="stylesheet">
+        <link href="{% static 'dist/table_viz/table-viz.css' %}" rel="stylesheet">
     {% elif use_deployment %}
         <link href="table-viz.css" rel="stylesheet">
     {% else %}
         <link href="{% static 'common/libs/bootstrap.custom/bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'tables/app.css' %}" rel="stylesheet">
+        <link href="{% static 'common/app.css' %}" rel="stylesheet">
         <link href="{% static 'tables/components/table-viz/table-viz.css' %}" rel="stylesheet">
         <link href="{% static 'tables/components/responsive-table/responsive-table.css' %}" rel="stylesheet">
         <link href="{% static 'tables/components/responsive-table/icons.css' %}" rel="stylesheet">
@@ -28,17 +28,20 @@
         <table-viz url="{% url 'table-viz' %}"></table-viz>
     {% endif %}
     {% if use_prod %}
-        <script src="{% static 'tables/dist/table_viz/table-viz-libs.min.js' %}"></script>
-        <script src="{% static 'tables/dist/table_viz/table-viz.min.js' %}"></script>
+        <script src="{% static 'dist/table_viz/table-viz-libs.min.js' %}"></script>
+        <script src="{% static 'dist/table_viz/table-viz.min.js' %}"></script>
     {% elif use_deployment %}
         <script src="table-viz-libs.min.js"></script>
         <script src="table-viz.min.js"></script>
     {% else %}
-        <script src="{% static 'angular/angular.min.js' %}"></script>
-        <script src="{% static 'angular-touch/angular-touch.min.js' %}"></script>
+        <script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+        <script src="{% static 'bower_components/angular-touch/angular-touch.min.js' %}"></script>
         <script src="{% static 'common/components/iframe-resizer/iframe-resizer.js' %}"></script>
         <script src="{% static 'tables/components/table-viz/table-viz.js' %}"></script>
         <script src="{% static 'tables/components/responsive-table/responsive-table.js' %}"></script>
+    {% endif %}
+    {% if use_deployment or use_prod %}
+        <script>if (window.Analytics) { Analytics.setup('data-table', {embedded: 'true'}); Analytics.click('embed-view'); }</script>
     {% endif %}
     {% if not use_deployment %}<script>window.STATIC_ROOT = '/static/'; </script>{% endif %}
     <script>(function (angular) { 'use strict'; angular.module('app', ['ngTouch', 'table-viz']); })(window.angular);</script>

@@ -46,6 +46,7 @@ module.exports = function (grunt) {
             table_viz: {
                 files: {
                     'tables/static/dist/table_viz/table-viz.min.js': [
+                        'common/static/common/libs/analytics/analytics.js',
                         'common/static/common/components/iframe-resizer/iframe-resizer.js',
                         'tables/static/tables/components/table-viz/table-viz.js',
                         'tables/static/tables/components/responsive-table/responsive-table.js'
