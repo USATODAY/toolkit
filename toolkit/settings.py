@@ -48,6 +48,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common.middleware.filter_ips.FilterIPMiddleware'
 ]
 
 ROOT_URLCONF = 'toolkit.urls'
@@ -145,3 +146,30 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+ALLOWED_IPS = [
+    '127.0.0.1',
+    '10.192.0.0',
+    '10.192.0.1',
+    '10.192.0.2',
+    '10.192.0.3',
+    '10.192.0.4',
+    '10.192.0.5',
+    '10.192.0.6',
+    '10.192.0.7',
+    '10.160.0.8',
+    '10.192.0.9',
+    '10.192.0.10',
+    '10.160.0.0',
+    '10.160.0.1',
+    '10.160.0.2',
+    '10.160.0.3',
+    '10.160.0.4',
+    '10.160.0.5',
+    '10.160.0.6',
+    '10.160.0.7',
+    '10.160.0.8',
+    '10.160.0.9',
+    '10.160.0.10',
+    '10.160.0.11'
+]
