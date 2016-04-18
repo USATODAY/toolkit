@@ -56,6 +56,18 @@
             $scope.has_results = $scope.results_cnt > 0;
         };
 
+        this.calc_scroll_bar_width = function() {
+            // Create the measurement node
+            var scrollDiv = document.createElement("div");
+            scrollDiv.className = "scrollbar-measure";
+            document.body.appendChild(scrollDiv);
+            // Get the scrollbar width
+            var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+            // Delete the DIV
+            document.body.removeChild(scrollDiv);
+            return scrollbarWidth;
+        };
+
         w.bind('resize', function () {
             self.set_header_height();
         });
@@ -66,12 +78,17 @@
             }
         });
 
+        $scope.scroll_bar_width = this.calc_scroll_bar_width();
+
         // use url to populate table data
         if (!$scope.tableData && $scope.url) {
             $tableManager.init($scope.url, false).then(function (response) {
                 $scope.tableData = response;
                 self.refresh_view();
             });
+        }
+        else if ($scope.tableData) {
+            self.refresh_view();
         }
 
     }])

@@ -11,16 +11,16 @@
         </div>
     </div>
     <div class="data-table" ng-show="has_results">
-        <div class="table-wrapper table-headers">
+        <div class="table-wrapper table-headers" ng-style="{'right': scroll_bar_width + 'px'}">
             <table class="table">
                 <thead>
                 <tr class="th-row">
-                    <th class="th" ng-repeat="field in tableData.fields">{{ field }}</th>
+                    <th class="th" ng-repeat="field in tableData.fields track by $index">{{ field }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in tableData.values | filter:$parent.filter_text" class="table-row">
-                        <td class="td" data-title="{{ tableData.fields[$index] }}" ng-repeat="value in row">{{ value }}</td>
+                    <tr ng-repeat="row in tableData.values | filter:$parent.filter_text track by $index" class="table-row">
+                        <td class="td" data-title="{{ tableData.fields[$index] }}" ng-repeat="value in row track by $index">{{ value }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,8 +33,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in tableData.values | filter:$parent.filter_text" class="table-row">
-                        <td class="td" data-title="{{ tableData.fields[$index] }}" ng-repeat="value in row">{{ value }}</td>
+                    <tr ng-repeat="row in tableData.values | filter:$parent.filter_text track by $index" class="table-row">
+                        <td class="td" data-title="{{ tableData.fields[$index] }}" ng-repeat="value in row track by $index">{{ value }}</td>
                     </tr>
                 </tbody>
             </table>

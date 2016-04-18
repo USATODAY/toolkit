@@ -33,6 +33,7 @@ module.exports = function (grunt) {
                 files: {
                     'tables/static/dist/tables/tables.css': [
                         'common/static/common/libs/bootstrap.custom/bootstrap.min.css',
+                        'bower_components/sweetalert/dist/sweetalert.css',
                         'common/static/common/app.css',
                         'tables/static/tables/**/**/*.css'
                     ]

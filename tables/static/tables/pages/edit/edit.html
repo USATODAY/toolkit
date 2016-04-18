@@ -1,21 +1,26 @@
 <div class="help-text">
     <h2 class="help-text-title">How does your table look?</h2>
-    <p>Click on the fields below to edit your chatter. Bookmark this page to edit this table in the future. Resize your browser window to view the mobile version. Once your happy with your table click on the "publish" button to generate your oembed link.</p>
+    <p>Click on the fields below to edit your chatter. Bookmark this page to edit this table in the future. The dotted
+        area below is how your table will appear in presto. Resize your browser window to view the mobile version. Once
+        your happy with your table click on the "publish" button to generate your oembed link.</p>
 </div>
 <div class="snippet desktop-width-limit">
-    <div id="viz" class="editable" ng-if="viz">
-        <div class="chatter-header chatter clearfix">
-            <div class="chatter-title-wrapper">
-                <h1 class="chatter-title" onaftersave="save()" editable-textarea="viz.title">{{ viz.title || "Click here to edit the title" }}</h1>
-            </div>
-            <p class="chatter-description" onaftersave="save()" editable-textarea="viz.chatter">{{ viz.chatter || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
+    <div class="chatter-header chatter clearfix">
+        <div class="chatter-title-wrapper">
+            <h1 class="chatter-title" onaftersave="save()" editable-textarea="viz.title">
+                {{ viz.title || "Click here to edit the title" }}</h1>
         </div>
-        <div class="viz-content">
-            <responsive-table table-data="viz.table_data"></responsive-table>
-        </div>
-        <div class="chatter-footer chatter">
-            <p><span class="chatter-source">Source</span>: <span onaftersave="save()" editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span></p>
-        </div>
+        <p class="chatter-description" onaftersave="save()" editable-textarea="viz.chatter">
+            {{ viz.chatter || "Click here to edit the chatter. It's recommended to limit the chatter to 3 short sentences." }}</p>
+    </div>
+    <div class="viz-content">
+        <responsive-table table-data="viz.table_data" ng-if="viz.table_data"></responsive-table>
+    </div>
+    <div class="chatter-footer chatter">
+        <p><span class="chatter-source">Source</span>: <span onaftersave="save()"
+                                                             editable-textarea="viz.source">{{ viz.source || "Click here to edit the source." }}</span>
+        </p>
     </div>
 </div>
-<div class="slide-btn" ng-class="{'spinner-icon is-publishing': is_publishing, 'editor-icon-publish': !is_publishing}" ng-click="publish_btn()"><span class="slide-btn-text">Publish</span></div>
+<div class="slide-btn" ng-class="{'spinner-icon is-publishing': is_publishing, 'editor-icon-publish': !is_publishing}"
+     ng-click="publish_btn()"><span class="slide-btn-text">Publish</span></div>

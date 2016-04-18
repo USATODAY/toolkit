@@ -22,6 +22,14 @@
     table-layout: fixed;
 }
 
+.scrollbar-measure {
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	top: -9999px;
+}
+
 .table > thead > tr,
 .table > tbody > tr,
 .table > tfoot > tr {
@@ -37,7 +45,7 @@
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
     text-align: left;
-    padding: 10px 17px;
+    padding: 10px 10px;
     vertical-align: top;
     border-top: 0;
     -webkit-transition: all 0.3s ease;
@@ -274,6 +282,7 @@ input:focus {
 
     .table-wrapper.table-values {
         overflow: auto;
+        overflow-x: hidden;
         position: absolute;
         left: 0;
         right: 0;
@@ -283,6 +292,11 @@ input:focus {
 
     .table-wrapper.table-headers .th-row th {
         background: #fff;
+    }
+
+    .table-wrapper th,
+    .table-wrapper td {
+        word-break: break-all;
     }
 
     .data-table tr {

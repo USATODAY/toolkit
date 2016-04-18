@@ -12,6 +12,7 @@
     max-width: 860px;
     height: 85px;
     margin: -43px auto 0;
+    overflow: hidden;
 }
 
 .box {

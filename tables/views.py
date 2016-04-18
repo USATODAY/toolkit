@@ -70,7 +70,7 @@ def get_table_viz_data(id):
     data = {
         'title': table_viz.title,
         'chatter': table_viz.chatter,
-        'source': table_viz.chatter,
+        'source': table_viz.source,
         'table_data': json.loads(table_viz.json.file.read())
     }
     return data
