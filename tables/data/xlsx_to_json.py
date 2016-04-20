@@ -16,8 +16,6 @@ def convert(path, filters=None, export_path=None, compress=False):
         data = extract_data_from_csv(path)
     if extension == '.xls':
         data = extract_data_from_xls(path)
-    if filters is not None:
-        data = filter_data(data, filters)
     if compress:
         data = compress_data(data)
     if export_path:
@@ -33,40 +31,6 @@ def compress_data(data):
     for item in data:
         compressed_data['values'].append(item.values())
     return compressed_data
-
-
-def filter_data(data_rows, filters):
-    filtered_data = []
-    try:
-        for row in data_rows:
-            filtered_data_row = {}
-            for filter in filters:
-                data_field = None
-                data_val = None
-                # default field is the column name
-                if 'column' in filter:
-                    data_field = filter['column']
-                # override data field with name in filters
-                if 'name' in filter:
-                    data_field = filter['name']
-                # extract value from row
-                if 'column' in filter and filter['column'] in row:
-                    data_val = row[filter['column']]
-                if 'combine' in filter:
-                    data_val = filter['combine'](row)
-                if data_val is not None and 'clean' in filter:
-                    data_val = filter['clean'](data_val)
-                if data_field is None:
-                    raise Exception('Unable to set data fieldin row = %s' % row)
-                if data_val is None:
-                    raise Exception('Unable to set data value in row = %s' % row)
-                if data_field is not None and data_val is not None:
-                    filtered_data_row[data_field] = data_val
-            filtered_data.append(filtered_data_row)
-    except Exception, e:
-        print 'ERROR: failed due to %s' % e
-        pass
-    return filtered_data
 
 
 def extract_data_from_csv(file_path):

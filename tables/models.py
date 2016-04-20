@@ -7,6 +7,21 @@ from django.core.files.base import ContentFile
 import ftp_manager
 import json
 import logging
+from datetime import datetime
+
+
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, datetime):
+        # time is not set, convert date
+        if obj.hour == 0 and obj.minute == 0 and obj.second == 0:
+            serial = obj.strftime('%b %d, %Y')
+        else:
+            serial = obj.strftime('%b %d, %Y %H:%M:%S')
+        return serial
+
+    raise TypeError("Type not serializable")
 
 
 class TableViz(models.Model):
@@ -39,7 +54,7 @@ def create_json(sender, instance, **kwargs):
         try:
             json_filename = instance.file.path[instance.file.path.rindex('/') + 1:instance.file.path.rindex('.')] + '.json'
             contents = xlsx_to_json.convert(instance.file.path, compress=True)
-            instance.json.save(json_filename, ContentFile(json.dumps(contents)))
+            instance.json.save(json_filename, ContentFile(json.dumps(contents, default=json_serial)))
         except Exception as e:
             instance.delete()
             logging.error(e.message)
