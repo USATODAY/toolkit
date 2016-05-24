@@ -18,7 +18,6 @@ class FilterIPMiddleware(object):
         is_allowed = False
 
         ip = self.get_client_ip(request)
-        ip = '159.54.138.10'
 
         for allowed_ip in settings.ALLOWED_IPS:
 
